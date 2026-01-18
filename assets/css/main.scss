@@ -118,13 +118,17 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 /* --------------------------------------
    7. 关于我页面头像特殊微调
    -------------------------------------- */
-.about-avatar {
-  width: 90px !important;
-  height: 90px !important;
-  border-radius: 50% !important; /* 强制画圆 */
-  margin-left: 0 !important;     /* 确保左顶格 */
+/* 增加 .about-container 前缀以提升优先级，强制覆盖 100% 宽度的全局设置 */
+.about-container img.about-avatar {
+  width: 100px !important;   /* 设定固定的头像宽度 */
+  height: 100px !important;  /* 设定固定的头像高度 */
+  max-width: 100px !important;
+  border-radius: 50% !important; /* 保持圆形 */
+  margin-left: 0 !important;     /* 左顶格 */
   margin-right: auto !important;
-  object-fit: cover;
+  margin-bottom: 30px !important;
+  object-fit: cover;             /* 避免照片拉伸变形 */
+  display: block;
 }
 
 /* --------------------------------------
