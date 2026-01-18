@@ -143,14 +143,12 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
     align-items: center;
   }
   
-  /* 调大网站标题 (小狗帽子和...) */
   header h1 a {
     font-size: 30px !important; 
     display: block;
     margin-bottom: 5px;
   }
 
-  /* 调整副标题 (一些我存在的证据...) */
   header p {
     font-size: 14px !important;
     margin-top: 5px;
@@ -177,13 +175,13 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 
   /* C. 内容容器适配 */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 5px !important;   /* 保留 5px 数值 */
+    padding: 5px !important;
     margin: 10px auto !important;
     width: 92% !important;      
     box-sizing: border-box;
   }
 
-  /* 缩小框内标题 (关于我、分类页标题等) */
+  /* 缩小框内标题 */
   .page-content h1, 
   .about-container h1, 
   .post h1,
@@ -192,13 +190,51 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
     margin-bottom: 20px !important;
   }
 
-  /* 新增：文章详情页专用布局修正，覆盖全局 header 居中 */
+  /* 文章详情页专用布局修正 */
   .page-content header.post-page-header {
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important; /* 强制标题容器内容左顶格 */
+    align-items: flex-start !important; 
     text-align: left !important;
-    width: 1
+    width: 100% !important;
+  }
+
+  .post-title {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    text-indent: 0 !important;
+  }
+
+  .post-date {
+    text-align: right !important; 
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    text-indent: 0 !important;
+    display: block !important;
+  }
+
+  /* D. 全站正文与列表文字统合 */
+  body {
+    font-size: 15px; 
+  }
+
+  p, .about-text p, .entry p, .post p, .entry, .post-content, .inner-post-content p {
+    font-size: 15px !important;
+    line-height: 1.7;
+    color: #444; 
+  }
+
+  /* 确保正文缩进在手机端生效 */
+  .inner-post-content p {
+    text-indent: 2em !important;
+  }
+
+  /* E. 首页图片间距 */
+  .home-banner { 
+    padding: 0 15px; 
+  }
+} /* 这里是第 8 部分 @media 的结束花括号，必须保留 */
 
 /* --------------------------------------
    10. 文章详情页排版控制
