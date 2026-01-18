@@ -1,6 +1,6 @@
 name: 小狗帽子和永恒泡芙 # 或者你想显示的任何名字
 description: "一些我存在的证据，在时光里它们曾部分代表或属于我。" # 这里改为你的Slogan
-avatar: https://raw.githubusercontent.com/andersonpson/andersonpson.github.io/main/assets/images/avatar.jpg
+avatar: /assets/images/avatar.jpg
 
 # 强制网站使用你写的 main.scss 样式
 sass:
