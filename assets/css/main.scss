@@ -5,6 +5,7 @@
    -------------------------------------- */
 @font-face {
   font-family: 'Jinghua';
+  /* 使用 site.baseurl 确保在 GitHub Pages 的子路径下也能正确加载字体 */
   src: url('{{ site.baseurl }}/assets/fonts/jinghua.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -15,188 +16,95 @@
    2. 全局基础样式 (Global Reset)
    -------------------------------------- */
 body {
-  background-color: #fcfcf5; /* 你的纸质背景色 */
-  font-family: 'Jinghua', serif; /* 启用宋体 */
-  color: #2c2c2c; /* 字色改为深灰，比纯黑更柔和 */
-  line-height: 1.8; /* 增加行高，阅读更舒适 */
+  background-color: #fcfcf5; /* 纸质感背景色 */
+  font-family: 'Jinghua', serif; /* 首选自定义京华老宋体 */
+  color: #2c2c2c;
+  line-height: 1.8;
   margin: 0;
   padding: 0;
-  font-size: 18px; /* 稍微调大字号 */
+  font-size: 18px;
 }
 
 a {
-  text-decoration: none; /* 去掉丑陋的下划线 */
+  text-decoration: none; /* 全站去除链接下划线 */
   color: #4a4a4a;
-  transition: color 0.3s;
+  transition: color 0.3s; /* 增加颜色过渡动画 */
 }
 
 a:hover {
-  color: #a0522d; /* 鼠标悬停变为棕色/赭石色，符合复古感 */
+  color: #a0522d; /* 悬停时变为赭石色 */
 }
 
 /* --------------------------------------
    3. 核心布局容器 (Layout Container)
-   让内容居中，不要贴着屏幕边缘
    -------------------------------------- */
-header, .posts, footer, article, .page-content {
-  max-width: 800px; /* 限制最大宽度 */
-  margin: 0 auto;   /* 左右自动居中 */
-  padding: 0 20px;  /* 手机端左右留白 */
+/* 统一全站最大宽度，确保菜单、图片、文字框视觉对齐 */
+header, .home-wrapper, footer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* --------------------------------------
-   4. 顶部导航栏设计 (Header)
+   4. 磨砂玻璃卡片 (Frosted Glass Card)
+   用于“关于我”、文章列表和分类页面的主体容器
+   -------------------------------------- */
+.page, .post, .page-content, .posts, .about-container {
+  background: rgba(255, 255, 255, 0.45) !important; /* 半透明白色底层 */
+  backdrop-filter: blur(12px) !important;           /* 磨砂模糊效果 */
+  -webkit-backdrop-filter: blur(12px);              /* 兼容 Safari */
+  
+  padding: 50px;                                    /* 内部留白 */
+  margin: 20px auto 60px auto !important;           /* 上下间距，左右居中 */
+  max-width: 800px;                                 /* 宽度与 Header 对齐 */
+  
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);       /* 模拟边缘反光 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);      /* 柔和阴影提升深度感 */
+  text-align: left;                                 /* 强制内部文字左对齐 */
+  box-sizing: border-box;                           /* 确保 Padding 不撑大容器 */
+}
+
+/* --------------------------------------
+   5. 顶部导航栏 (Header)
    -------------------------------------- */
 header {
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   display: flex;
-  justify-content: space-between; /* 左右分开：左边标题，右边导航 */
-  align-items: baseline; /* 文字底部对齐 */
-  flex-wrap: wrap; /* 手机端自动换行 */
+  justify-content: space-between; /* 标题居左，导航居右 */
+  align-items: baseline;          /* 底部基准线对齐 */
+  flex-wrap: wrap;                /* 适配手机端换行 */
 }
 
-/* 网站标题样式 */
-header h1 a {
-  font-size: 32px;
-  font-weight: bold;
-  color: #000;
-}
-
-header p {
-  font-size: 14px;
-  color: #666;
-  margin-top: 5px;
-}
-
-/* 导航链接样式 */
-nav {
-  margin-top: 10px;
-}
-
-nav a {
-  margin-left: 20px; /* 链接之间的间距 */
-  font-size: 16px;
-  color: #666;
-}
+header h1 a { font-size: 32px; font-weight: bold; color: #000; }
+header p { font-size: 14px; color: #666; margin-top: 5px; }
+nav a { margin-left: 20px; font-size: 16px; color: #666; }
 
 /* --------------------------------------
-   5. 文章列表美化 (Post List)
+   6. 图片统一控制 (Images Alignment)
    -------------------------------------- */
-.post {
-  margin-bottom: 60px; /* 文章之间的距离 */
-}
 
-.post h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.post .date {
-  font-size: 14px;
-  color: #999;
-  display: block;
-  margin-bottom: 15px;
-}
-
-/* 图片处理：标题上方的缩略图 */
+/* A. 框内图片：撑满磨砂框内部宽度 (用于分类页封面、文章列表、关于我) */
+.category-header-img,
+.about-container img,
+.posts-list img,
 .post-teaser-img {
-  width: 100%;
-  height: auto;
+  width: 100% !important;   /* 强制填满父容器 */
+  max-width: 100% !important;
+  height: auto !important;  /* 保持原始比例 */
   display: block;
-  margin-bottom: 20px;
-  border-radius: 2px;
-}
-
-/* --------------------------------------
-   6. 特殊板块：照片墙 (Full Width)
-   -------------------------------------- */
-.category-photos .post-teaser-img {
-  width: 100vw; /* 强制占满屏幕宽度 */
-  margin-left: 50%;
-  transform: translateX(-50%);
-  max-width: none;
-}
-
-/* --------------------------------------
-   7. 关于我页面 (About)
-   -------------------------------------- */
-.about-avatar {
-  display: block;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin: 0 auto 40px auto; /* 居中显示 */
+  margin-bottom: 30px;      /* 与下方标题的距离 */
+  border-radius: 4px;       /* 图片微圆角 */
   object-fit: cover;
 }
 
-/* 手机端适配微调 */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  nav {
-    margin-top: 20px;
-  }
-  
-  nav a {
-    margin: 0 10px;
-  }
-}
-
-/* 确保所有页面的主内容容器都应用磨砂卡片 */
-.page, .post, .page-content, .posts, .about-container {
-  background: rgba(255, 255, 255, 0.45) !important; 
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px);
-  
-  padding: 50px;
-  margin: 20px auto 60px auto !important;
-  max-width: 800px; /* 这里的宽度应与 header 保持一致或略窄 */
-  
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-  
-  /* 确保内部文字左对齐 */
-  text-align: left;
-}
-
-/* 移除可能导致无法左对齐的默认居中 */
-.about-avatar {
-  margin-left: 0 !important;
-  margin-right: auto !important;
-}
-
-/* 确保容器内的图片自动撑满宽度 */
-.about-container img {
-  max-width: 100%; /* 限制最大宽度为容器宽度 */
-  width: 100%;     /* 强制撑满容器 */
-  height: auto;    /* 高度随比例自适应 */
-  display: block;
-  margin-bottom: 20px;
-}
-
-/* 针对“照片”分类的特殊处理：如果希望图片比容器还宽（撑满屏幕），请保留此项 */
-.category-photos img {
-  width: 100% !important;
-  max-width: none !important;
-  border-radius: 0;
-}
-
-/* 首页外部容器 */
-.home-wrapper {
-  max-width: 800px; /* 必须与你的文字框 max-width 一致 */
-  margin: 0 auto;
-}
-
-/* 位于框外的图片样式 */
+/* B. 框外图片：首页 Banner (位于菜单和文字框之间) */
 .home-banner {
   width: 100%;
-  margin-bottom: 20px; /* 图片与下方文字框的间距 */
-  padding: 0 50px; /* 补偿文字框的 padding，确保视觉宽度对齐 */
+  margin-bottom: 20px; 
+  /* 关键：使用 50px 补偿文字框的内边距，使图片边缘与框内文字垂直对齐 */
+  padding: 0 50px; 
   box-sizing: border-box;
 }
 
@@ -204,10 +112,44 @@ nav a {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px; /* 可选：给图片增加圆角 */
+  border-radius: 8px; /* 首页大图圆角稍大，更显精致 */
 }
 
-/* 调整 header 间距，确保图片在菜单正下方 */
-header {
-  margin-bottom: 20px !important;
+/* --------------------------------------
+   7. 关于我页面头像特殊微调
+   -------------------------------------- */
+.about-avatar {
+  width: 90px !important;
+  height: 90px !important;
+  border-radius: 50% !important; /* 强制画圆 */
+  margin-left: 0 !important;     /* 确保左顶格 */
+  margin-right: auto !important;
+  object-fit: cover;
+}
+
+/* --------------------------------------
+   8. 响应式适配 (Mobile Styles)
+   -------------------------------------- */
+@media (max-width: 600px) {
+  header { 
+    flex-direction: column; 
+    text-align: center; 
+  }
+  
+  nav { 
+    margin-top: 20px; 
+  }
+  
+  nav a { 
+    margin: 0 10px; 
+  }
+
+  /* 手机端缩小内边距，避免文字太挤 */
+  .page-content, .about-container { 
+    padding: 20px; 
+  }
+
+  .home-banner { 
+    padding: 0 20px; 
+  }
 }
