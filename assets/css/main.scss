@@ -206,13 +206,13 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 
 /* 1. 仅针对 post 布局中的段落进行缩进和行距调整 */
 .inner-post-content p {
-  text-indent: 2em !important; /* 首行缩进两个中文字符 */
-  line-height: 1.5 !important; /* 1.5倍行距 */
-  text-align: justify;         /* 两端对齐 */
-  margin-bottom: 1.5em;        /* 段落间的垂直间距 */
+  text-indent: 2em !important;
+  line-height: 1.5 !important;
+  text-align: justify;
+  margin-bottom: 1.5em;
 }
 
-/* 2. 排除非段落元素：确保图片、标题、列表不被缩进 */
+/* 2. 排除非段落元素 */
 .inner-post-content img, 
 .inner-post-content h1, 
 .inner-post-content h2, 
@@ -221,10 +221,4 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 .inner-post-content ul,
 .inner-post-content ol {
   text-indent: 0 !important; 
-}
-
-/* 3. 文章内图片居中并保持间距 */
-.inner-post-content img {
-  display: block;
-  margin: 20px auto;
 }
