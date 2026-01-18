@@ -1,0 +1,33 @@
+---
+layout: default
+title: "照片"
+---
+
+<div class="about-container">
+  
+  <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: bold;">照片</h1>
+  <p style="color: #888; font-size: 15px; margin-bottom: 40px; letter-spacing: 1px;">
+    一些记录，它们其实随着时间逐渐失去意义。
+  </p>
+
+  <div class="posts-list">
+    {% for post in site.categories.photos %}
+      <article style="margin-bottom: 60px; border-bottom: 1px solid rgba(0,0,0,0.03); padding-bottom: 40px;">
+        
+        {% if post.image %}
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            <img src="{{ post.image }}" alt="{{ post.title }}">
+          </a>
+        {% endif %}
+        
+        <h2 style="font-size: 20px; margin: 15px 0 8px 0;">
+          <a href="{{ site.baseurl }}{{ post.url }}" style="color: #333;">{{ post.title }}</a>
+        </h2>
+        
+        <span style="font-size: 13px; color: #bbb;">{{ post.date | date: "%Y年%m月%d日" }}</span>
+
+      </article>
+    {% endfor %}
+  </div>
+
+</div>
