@@ -177,7 +177,7 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 
   /* C. 内容容器适配 */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 20px !important;   /* 增加到 20px 以防文字太贴边 */
+    padding: 5px !important;   /* 增加到 20px 以防文字太贴边 */
     margin: 10px auto !important;
     width: 92% !important;      
     box-sizing: border-box;
