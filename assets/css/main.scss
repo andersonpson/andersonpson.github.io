@@ -177,7 +177,7 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 
   /* C. 内容容器适配 */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 5px !important;   /* 增加到 20px 以防文字太贴边 */
+    padding: 5px !important;   /* 保留你设定的 5px */
     margin: 10px auto !important;
     width: 92% !important;      
     box-sizing: border-box;
@@ -190,6 +190,30 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
   h1 {
     font-size: 22px !important; 
     margin-bottom: 20px !important;
+    text-align: left !important; /* 新增：强制框内主标题左顶格 */
+  }
+
+  /* 新增：专门处理文章详情页内的标题与日期排列 */
+  .post-card header, 
+  .page-content header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* 确保标题容器不居中 */
+    text-align: left !important;
+  }
+
+  .post-title {
+    text-align: left !important;
+    width: 100% !important;
+    text-indent: 0 !important;
+  }
+
+  .post-date {
+    text-align: right !important; /* 强制日期右顶格 */
+    width: 100% !important;
+    text-indent: 0 !important;
+    margin-top: 5px !important;
+    display: block !important;
   }
 
   /* D. 全站正文与列表文字统合 */
@@ -203,10 +227,17 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
   .entry p, 
   .post p, 
   .entry,
-  .post-content {
+  .post-content,
+  .inner-post-content p {
     font-size: 15px !important;
     line-height: 1.7;
-    color: #444; /* 保持一致的字色 */
+    color: #444; 
+    /* 保持你之前要求的 1.5 倍行距或 1.7 倍，此处遵循当前部分 1.7 设定 */
+  }
+
+  /* 新增：确保文章详情页内的正文首行缩进在手机端依然生效 */
+  .inner-post-content p {
+    text-indent: 2em !important;
   }
 
   /* E. 首页图片间距 */
