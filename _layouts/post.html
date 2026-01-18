@@ -4,9 +4,11 @@ layout: default
 
 <article class="page-content">
   
-  <header style="margin-bottom: 30px;">
-    <h1 style="margin-bottom: 10px; font-size: 28px; font-weight: bold; border: none;">{{ page.title }}</h1>
-    <time style="font-size: 14px; color: #999;">
+  <header style="text-align: left; margin-bottom: 30px;">
+    <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: bold; border: none; text-align: left;">
+      {{ page.title }}
+    </h1>
+    <time style="font-size: 14px; color: #999; display: block; text-align: left;">
       编辑于 {{ page.date | date: "%Y-%m-%d" }}
     </time>
   </header>
@@ -15,7 +17,7 @@ layout: default
     {{ content }}
   </div>
 
-  <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+  <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: left;">
     <div style="font-size: 13px; color: #bbb;">
       {% if page.categories.size > 0 %}
         <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb;">返回目录</a>
