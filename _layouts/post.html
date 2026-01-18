@@ -8,17 +8,17 @@ layout: default
     <h1 class="post-title" style="margin: 0 0 10px 0 !important; font-size: 28px !important; font-weight: bold !important; text-align: left !important; width: 100% !important; border: none !important; text-indent: 0 !important;">
       {{ page.title }}
     </h1>
-    
-    <time class="post-date" style="font-size: 14px !important; color: #999 !important; text-align: right !important; width: 100% !important; display: block !important; text-indent: 0 !important;">
-      编辑于 {{ page.date | date: "%Y-%m-%d" }}
-    </time>
   </header>
 
   <div class="inner-post-content">
     {{ content }}
   </div>
 
-  <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: left !important;">
+  <div class="post-date-bottom" style="margin-top: 40px; font-size: 14px; color: #999; text-align: left !important; text-indent: 0 !important;">
+    编辑于 {{ page.date | date: "%Y-%m-%d" }}
+  </div>
+
+  <footer style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: left !important;">
     <div style="font-size: 13px; color: #bbb;">
       {% if page.categories.size > 0 %}
         <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb;">返回目录</a>
