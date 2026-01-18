@@ -4,11 +4,12 @@ layout: default
 
 <article class="page-content">
   
-  <header style="text-align: left; margin-bottom: 30px;">
-    <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: bold; border: none; text-align: left;">
+  <header style="display: flex; flex-direction: column; width: 100%; margin-bottom: 30px;">
+    <h1 class="post-title" style="margin: 0 0 10px 0; font-size: 28px; font-weight: bold; text-align: left; border: none;">
       {{ page.title }}
     </h1>
-    <time style="font-size: 14px; color: #999; display: block; text-align: left;">
+    
+    <time class="post-date" style="font-size: 14px; color: #999; text-align: right; width: 100%; display: block;">
       编辑于 {{ page.date | date: "%Y-%m-%d" }}
     </time>
   </header>
@@ -17,8 +18,8 @@ layout: default
     {{ content }}
   </div>
 
-  <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: left;">
-    <div style="font-size: 13px; color: #bbb;">
+  <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="font-size: 13px; color: #bbb; display: flex; justify-content: flex-start;">
       {% if page.categories.size > 0 %}
         <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb;">返回目录</a>
       {% endif %}
