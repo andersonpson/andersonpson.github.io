@@ -1,0 +1,48 @@
+---
+---
+/* 1. 定义并引用京华老宋体 */
+@font-face {
+  font-family: 'Jinghua';
+  src: url('{{ site.baseurl }}/assets/fonts/jinghua.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* 2. 全站基础样式 */
+body {
+  background-color: #fcfcf5; /* 你要求的纸质色 */
+  font-family: 'Jinghua', serif;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* 3. 首页文章列表：缩略图在标题上方 */
+.post-list-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.post-teaser-img {
+  width: 100%;
+  height: auto;
+  order: -1; /* 将图片移至最上方 */
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+/* 4. 照片分类下：图片占满更大宽度 */
+.category-photos .post-teaser-img {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  border-radius: 0;
+}
+
+/* 5. 关于我：圆形头像 */
+.about-avatar {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 2rem 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
