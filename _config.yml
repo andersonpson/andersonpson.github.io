@@ -1,21 +1,20 @@
-name: 小狗帽子和永恒泡芙 # 或者你想显示的任何名字
-description: "一些我存在的证据，在时光里它们曾部分代表或属于我。" # 这里改为你的Slogan
+name: 小狗帽子和永恒泡芙
+description: |
+  一些我存在的证据，在时光里它们曾部分代表或属于我。
+  「干燥剂之死」是数年前的一次自我剖析
+  「气球悲歌」是新的零碎东西
 avatar: /assets/images/avatar.jpg
 
-# 强制网站使用你写的 main.scss 样式
 sass:
   style: :compressed
 
-# 导航栏设置 (对应我们要创建的文件夹)
 navigation:
   - { name: "气球悲歌", url: "/category/balloon/" }
   - { name: "蓝色干燥剂之死", url: "/category/desiccant/" }
   - { name: "照片", url: "/category/photos/" }
   - { name: "关于我", url: "/about" }
 
-# 社交链接
 footer-links:
   instagram: darkclouds_watch 
 
-# 排除干扰文件
 exclude: [Gemfile, Gemfile.lock, node_modules, vendor]
