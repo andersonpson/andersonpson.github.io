@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 关于我
+permalink: /about/
 ---
 
 <div style="text-align: center; margin-bottom: 40px;">
