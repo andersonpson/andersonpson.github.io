@@ -1,48 +1,147 @@
 ---
 ---
-/* 1. 定义并引用京华老宋体 */
+/* --------------------------------------
+   1. 字体定义 (Font Setup)
+   -------------------------------------- */
 @font-face {
   font-family: 'Jinghua';
   src: url('{{ site.baseurl }}/assets/fonts/jinghua.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
-/* 2. 全站基础样式 */
+/* --------------------------------------
+   2. 全局基础样式 (Global Reset)
+   -------------------------------------- */
 body {
-  background-color: #fcfcf5; /* 你要求的纸质色 */
-  font-family: 'Jinghua', serif;
-  color: #1a1a1a;
-  line-height: 1.6;
+  background-color: #fcfcf5; /* 你的纸质背景色 */
+  font-family: 'Jinghua', serif; /* 启用宋体 */
+  color: #2c2c2c; /* 字色改为深灰，比纯黑更柔和 */
+  line-height: 1.8; /* 增加行高，阅读更舒适 */
+  margin: 0;
+  padding: 0;
+  font-size: 18px; /* 稍微调大字号 */
 }
 
-/* 3. 首页文章列表：缩略图在标题上方 */
-.post-list-item {
+a {
+  text-decoration: none; /* 去掉丑陋的下划线 */
+  color: #4a4a4a;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #a0522d; /* 鼠标悬停变为棕色/赭石色，符合复古感 */
+}
+
+/* --------------------------------------
+   3. 核心布局容器 (Layout Container)
+   让内容居中，不要贴着屏幕边缘
+   -------------------------------------- */
+header, .posts, footer, article, .page-content {
+  max-width: 800px; /* 限制最大宽度 */
+  margin: 0 auto;   /* 左右自动居中 */
+  padding: 0 20px;  /* 手机端左右留白 */
+}
+
+/* --------------------------------------
+   4. 顶部导航栏设计 (Header)
+   -------------------------------------- */
+header {
+  padding-top: 60px;
+  padding-bottom: 60px;
   display: flex;
-  flex-direction: column;
-  margin-bottom: 3rem;
+  justify-content: space-between; /* 左右分开：左边标题，右边导航 */
+  align-items: baseline; /* 文字底部对齐 */
+  flex-wrap: wrap; /* 手机端自动换行 */
 }
 
+/* 网站标题样式 */
+header h1 a {
+  font-size: 32px;
+  font-weight: bold;
+  color: #000;
+}
+
+header p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* 导航链接样式 */
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  margin-left: 20px; /* 链接之间的间距 */
+  font-size: 16px;
+  color: #666;
+}
+
+/* --------------------------------------
+   5. 文章列表美化 (Post List)
+   -------------------------------------- */
+.post {
+  margin-bottom: 60px; /* 文章之间的距离 */
+}
+
+.post h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.post .date {
+  font-size: 14px;
+  color: #999;
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* 图片处理：标题上方的缩略图 */
 .post-teaser-img {
   width: 100%;
   height: auto;
-  order: -1; /* 将图片移至最上方 */
-  margin-bottom: 1rem;
+  display: block;
+  margin-bottom: 20px;
   border-radius: 2px;
 }
 
-/* 4. 照片分类下：图片占满更大宽度 */
+/* --------------------------------------
+   6. 特殊板块：照片墙 (Full Width)
+   -------------------------------------- */
 .category-photos .post-teaser-img {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  border-radius: 0;
+  width: 100vw; /* 强制占满屏幕宽度 */
+  margin-left: 50%;
+  transform: translateX(-50%);
+  max-width: none;
 }
 
-/* 5. 关于我：圆形头像 */
+/* --------------------------------------
+   7. 关于我页面 (About)
+   -------------------------------------- */
 .about-avatar {
   display: block;
   width: 150px;
   height: 150px;
-  margin: 2rem 0;
   border-radius: 50%;
+  margin: 0 auto 40px auto; /* 居中显示 */
   object-fit: cover;
+}
+
+/* 手机端适配微调 */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  nav {
+    margin-top: 20px;
+  }
+  
+  nav a {
+    margin: 0 10px;
+  }
 }
