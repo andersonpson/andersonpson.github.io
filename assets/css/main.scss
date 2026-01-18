@@ -135,40 +135,57 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
    8. 响应式适配 (Mobile Styles)
    -------------------------------------- */
 @media (max-width: 600px) {
-  /* 解决菜单栏强制换行问题 */
+  /* A. 解决菜单栏强制换行：采用水平滚动或紧凑布局 */
   header { 
+    padding-top: 30px;
+    padding-bottom: 10px;
     flex-direction: column; 
-    text-align: center;
-    padding-top: 30px; /* 缩小顶部间距 */
+    align-items: center;
   }
   
   header h1 a {
-    font-size: 24px; /* 缩小手机端标题字号 */
+    font-size: 22px; /* 进一步缩小标题防止挤占空间 */
   }
 
   nav { 
     margin-top: 15px; 
-    width: 100%; /* 确保导航占满一行 */
+    width: 100%;
     display: flex;
-    justify-content: center; /* 居中排列 */
-    flex-wrap: nowrap; /* 强制不换行 */
+    justify-content: center;
+    flex-wrap: nowrap; /* 绝对禁止换行 */
+    overflow-x: auto;  /* 如果手机屏幕过窄，允许左右滑动查看菜单而非换行 */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
   }
   
   nav a { 
-    margin: 0 8px;   /* 缩小链接之间的左右间距 */
-    font-size: 14px; /* 稍微缩小字号，确保一排能放下 */
-    white-space: nowrap; /* 强制每个词不换行 */
+    margin: 0 6px;   /* 极度压缩链接间距 */
+    font-size: 13px; /* 进一步缩小导航字号 */
+    white-space: nowrap; 
+    flex-shrink: 0;  /* 禁止链接因空间不足被压缩变形 */
   }
 
-  /* 解决内容区过窄问题 */
+  /* B. 解决内容区过窄：大幅削减内边距 */
+  /* 你提到的“两个文字框”，可能是指嵌套的 .page-content 和 .about-container */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 20px;       /* 将 50px 的内边距缩小为 20px */
-    margin: 10px auto !important; /* 缩小卡片外边距 */
-    border-radius: 8px;  /* 稍微减小圆角 */
+    padding: 15px !important;   /* 从 20px 降至 15px，最大化利用屏幕宽度 */
+    margin: 5px auto !important; /* 减小框与框之间的垂直距离 */
+    width: 95% !important;      /* 确保容器占据屏幕 95% 的宽度 */
+    box-sizing: border-box;
   }
 
-  /* 调整首页 Banner 对齐 */
+  /* C. 调整正文字号 */
+  body {
+    font-size: 16px; /* 手机端正文从 18px 降至 16px */
+  }
+
+  .about-text p, .entry p, .post p {
+    font-size: 16px !important;
+    line-height: 1.6; /* 稍微收紧行高，避免手机端满屏皆空行 */
+  }
+
+  /* D. 首页 Banner 对齐同步 */
   .home-banner { 
-    padding: 0 20px; /* 必须与下方文字框的 padding 一致 */
+    padding: 0 10px; /* 对应文字框的新 padding */
   }
 }
