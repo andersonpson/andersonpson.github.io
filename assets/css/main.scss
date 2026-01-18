@@ -135,7 +135,7 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
    8. 响应式适配 (Mobile Styles)
    -------------------------------------- */
 @media (max-width: 600px) {
-  /* A. 解决菜单栏强制换行：采用水平滚动或紧凑布局 */
+  /* A. 顶部导航栏适配 */
   header { 
     padding-top: 30px;
     padding-bottom: 10px;
@@ -143,49 +143,74 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
     align-items: center;
   }
   
+  /* 调大网站标题 (小狗帽子和...) */
   header h1 a {
-    font-size: 25px; /* 进一步缩小标题防止挤占空间 */
+    font-size: 30px !important; 
+    display: block;
+    margin-bottom: 5px;
   }
 
+  /* 调整副标题 (一些我存在的证据...) */
+  header p {
+    font-size: 14px !important;
+    margin-top: 5px;
+  }
+
+  /* B. 导航链接 */
   nav { 
     margin-top: 15px; 
     width: 100%;
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap; /* 绝对禁止换行 */
-    overflow-x: auto;  /* 如果手机屏幕过窄，允许左右滑动查看菜单而非换行 */
+    flex-wrap: nowrap; 
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 5px;
   }
   
   nav a { 
-    margin: 0 3px;   /* 极度压缩链接间距 */
-    font-size: 11px; /* 进一步缩小导航字号 */
+    margin: 0 6px;   
+    font-size: 13px; 
     white-space: nowrap; 
-    flex-shrink: 0;  /* 禁止链接因空间不足被压缩变形 */
+    flex-shrink: 0;  
   }
 
-  /* B. 解决内容区过窄：大幅削减内边距 */
-  /* 你提到的“两个文字框”，可能是指嵌套的 .page-content 和 .about-container */
+  /* C. 内容容器适配 */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 5px !important;   /* 从 20px 降至 15px，最大化利用屏幕宽度 */
-    margin: 5px auto !important; /* 减小框与框之间的垂直距离 */
-    width: 95% !important;      /* 确保容器占据屏幕 95% 的宽度 */
+    padding: 20px !important;   /* 增加到 20px 以防文字太贴边 */
+    margin: 10px auto !important;
+    width: 92% !important;      
     box-sizing: border-box;
   }
 
-  /* C. 调整正文字号 */
+  /* 缩小框内标题 (关于我、分类页标题等) */
+  .page-content h1, 
+  .about-container h1, 
+  .post h1,
+  h1 {
+    font-size: 22px !important; 
+    margin-bottom: 20px !important;
+  }
+
+  /* D. 全站正文与列表文字统合 */
   body {
-    font-size: 12px; /* 手机端正文从 18px 降至 16px */
+    font-size: 15px; 
   }
 
-  .about-text p, .entry p, .post p {
-    font-size: 14px !important;
-    line-height: 1.6; /* 稍微收紧行高，避免手机端满屏皆空行 */
+  /* 统一所有页面的段落、列表、摘要文字大小 */
+  p, 
+  .about-text p, 
+  .entry p, 
+  .post p, 
+  .entry,
+  .post-content {
+    font-size: 15px !important;
+    line-height: 1.7;
+    color: #444; /* 保持一致的字色 */
   }
 
-  /* D. 首页 Banner 对齐同步 */
+  /* E. 首页图片间距 */
   .home-banner { 
-    padding: 0 10px; /* 对应文字框的新 padding */
+    padding: 0 15px; 
   }
 }
