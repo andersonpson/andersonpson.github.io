@@ -146,34 +146,26 @@ nav a {
   }
 }
 
-/* 1. 确保 header（菜单区域）不受卡片影响 */
-header {
-  background: transparent; /* 保持透明，直接显示底层纸质背景 */
-  padding-top: 60px;
-  padding-bottom: 40px;
-  max-width: 800px;
-  margin: 0 auto;
+/* 确保所有页面的主内容容器都应用磨砂卡片 */
+.page, .post, .page-content, .posts, .about-container {
+  background: rgba(255, 255, 255, 0.45) !important; 
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px);
+  
+  padding: 50px;
+  margin: 20px auto 60px auto !important;
+  max-width: 800px; /* 这里的宽度应与 header 保持一致或略窄 */
+  
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  
+  /* 确保内部文字左对齐 */
+  text-align: left;
 }
 
-/* 2. 定义内容区域的磨砂玻璃卡片 */
-/* 这里的 .page-content 和 .posts 是 Jekyll Now 默认的内容容器 */
-.page-content, .posts, article.post-content {
-  background: rgba(255, 255, 255, 0.45); /* 稍微增加白色的浓度 */
-  backdrop-filter: blur(12px); /* 强化磨砂玻璃的模糊感 */
-  -webkit-backdrop-filter: blur(12px); /* 兼容 Safari 浏览器 */
-  
-  padding: 50px; /* 内部留白，让文字不贴边 */
-  margin: 20px auto 60px auto; /* 与上方菜单拉开距离，并居中 */
-  max-width: 850px; /* 卡片宽度稍微宽于菜单，营造错落感 */
-  
-  border-radius: 12px; /* 圆角增加柔和感 */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* 极其细微的白边，模拟光泽 */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* 柔和阴影，让卡片“浮”起来 */
-}
-
-/* 3. 针对“关于我”页面的特殊优化 */
-/* 确保关于我里面的内容不再有额外的边距干扰 */
-.page-content div[style*="max-width: 650px"] {
-  max-width: 100% !important; 
-  margin: 0 !important;
+/* 移除可能导致无法左对齐的默认居中 */
+.about-avatar {
+  margin-left: 0 !important;
+  margin-right: auto !important;
 }
