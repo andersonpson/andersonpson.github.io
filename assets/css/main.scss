@@ -185,3 +185,29 @@ nav a {
   max-width: none !important;
   border-radius: 0;
 }
+
+/* 首页外部容器 */
+.home-wrapper {
+  max-width: 800px; /* 必须与你的文字框 max-width 一致 */
+  margin: 0 auto;
+}
+
+/* 位于框外的图片样式 */
+.home-banner {
+  width: 100%;
+  margin-bottom: 20px; /* 图片与下方文字框的间距 */
+  padding: 0 50px; /* 补偿文字框的 padding，确保视觉宽度对齐 */
+  box-sizing: border-box;
+}
+
+.home-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px; /* 可选：给图片增加圆角 */
+}
+
+/* 调整 header 间距，确保图片在菜单正下方 */
+header {
+  margin-bottom: 20px !important;
+}
