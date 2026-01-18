@@ -131,25 +131,40 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
    8. 响应式适配 (Mobile Styles)
    -------------------------------------- */
 @media (max-width: 600px) {
+  /* 解决菜单栏强制换行问题 */
   header { 
     flex-direction: column; 
-    text-align: center; 
+    text-align: center;
+    padding-top: 30px; /* 缩小顶部间距 */
   }
   
+  header h1 a {
+    font-size: 24px; /* 缩小手机端标题字号 */
+  }
+
   nav { 
-    margin-top: 20px; 
+    margin-top: 15px; 
+    width: 100%; /* 确保导航占满一行 */
+    display: flex;
+    justify-content: center; /* 居中排列 */
+    flex-wrap: nowrap; /* 强制不换行 */
   }
   
   nav a { 
-    margin: 0 10px; 
+    margin: 0 8px;   /* 缩小链接之间的左右间距 */
+    font-size: 14px; /* 稍微缩小字号，确保一排能放下 */
+    white-space: nowrap; /* 强制每个词不换行 */
   }
 
-  /* 手机端缩小内边距，避免文字太挤 */
-  .page-content, .about-container { 
-    padding: 20px; 
+  /* 解决内容区过窄问题 */
+  .page, .post, .page-content, .posts, .about-container { 
+    padding: 20px;       /* 将 50px 的内边距缩小为 20px */
+    margin: 10px auto !important; /* 缩小卡片外边距 */
+    border-radius: 8px;  /* 稍微减小圆角 */
   }
 
+  /* 调整首页 Banner 对齐 */
   .home-banner { 
-    padding: 0 20px; 
+    padding: 0 20px; /* 必须与下方文字框的 padding 一致 */
   }
 }
