@@ -258,3 +258,18 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 .inner-post-content ol {
   text-indent: 0 !important; 
 }
+
+/* 分类页文章列表排版微调 */
+.posts-list article {
+  margin-bottom: 25px !important; /* 缩小文章与文章之间的空隙，原为40px */
+}
+
+.posts-list h2 {
+  margin-bottom: 2px !important; /* 极大地缩小文章标题与日期之间的空隙 */
+}
+
+.posts-list span {
+  display: block;
+  margin-top: 0 !important;
+  line-height: 1;
+}
