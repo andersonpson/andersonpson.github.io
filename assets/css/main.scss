@@ -159,8 +159,8 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
   }
   
   nav a { 
-    margin: 0 6px;   /* 极度压缩链接间距 */
-    font-size: 13px; /* 进一步缩小导航字号 */
+    margin: 0 3px;   /* 极度压缩链接间距 */
+    font-size: 10px; /* 进一步缩小导航字号 */
     white-space: nowrap; 
     flex-shrink: 0;  /* 禁止链接因空间不足被压缩变形 */
   }
@@ -168,7 +168,7 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
   /* B. 解决内容区过窄：大幅削减内边距 */
   /* 你提到的“两个文字框”，可能是指嵌套的 .page-content 和 .about-container */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 15px !important;   /* 从 20px 降至 15px，最大化利用屏幕宽度 */
+    padding: 5px !important;   /* 从 20px 降至 15px，最大化利用屏幕宽度 */
     margin: 5px auto !important; /* 减小框与框之间的垂直距离 */
     width: 95% !important;      /* 确保容器占据屏幕 95% 的宽度 */
     box-sizing: border-box;
@@ -176,7 +176,7 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 
   /* C. 调整正文字号 */
   body {
-    font-size: 16px; /* 手机端正文从 18px 降至 16px */
+    font-size: 13px; /* 手机端正文从 18px 降至 16px */
   }
 
   .about-text p, .entry p, .post p {
