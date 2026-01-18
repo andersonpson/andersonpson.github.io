@@ -169,3 +169,19 @@ nav a {
   margin-left: 0 !important;
   margin-right: auto !important;
 }
+
+/* 确保容器内的图片自动撑满宽度 */
+.about-container img {
+  max-width: 100%; /* 限制最大宽度为容器宽度 */
+  width: 100%;     /* 强制撑满容器 */
+  height: auto;    /* 高度随比例自适应 */
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* 针对“照片”分类的特殊处理：如果希望图片比容器还宽（撑满屏幕），请保留此项 */
+.category-photos img {
+  width: 100% !important;
+  max-width: none !important;
+  border-radius: 0;
+}
