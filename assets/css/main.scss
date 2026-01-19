@@ -190,29 +190,30 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
     flex-shrink: 0;  
   }
 
-/* C. 内容容器适配 - 提升宽度并取消侧边距 */
+/* C. 内容容器适配 */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 15px 5px !important; /* 缩小左右内边距 */
+    padding: 15px 5px !important; 
     margin: 10px auto !important;
-    width: 96% !important;      /* 宽度从 92% 提升至 96% */
+    width: 96% !important;      
     box-sizing: border-box;
+    overflow: hidden; /* 确保负边距图片不会溢出容器 */
   }
 
-/* 核心修改：让照片在手机端填充全宽并收紧间距 */
-  .post img {
-    width: 100% !important; 
-    max-width: none !important;
-    display: block;
-    border-radius: 0; /* 顶格后取消图片圆角视觉效果更好 */
-  }
-
-  .post figure {
+  /* 核心修改：通过负外边距抵消父级 padding，实现图片与框等宽 */
+  .inner-post-content figure {
     width: auto !important;
-    /* 关键：使用负外边距抵消父容器 .post 的 5px padding */
+    /* 这里的 -5px 必须与上方容器的 padding 左右数值完全一致 */
     margin-left: -5px !important; 
-    margin-right: -5px !important;
-    margin-top: 0 !important;
+    margin-right: -5px !important; 
     margin-bottom: 25px !important;
+    padding: 0 !important;
+  }
+
+  .inner-post-content figure img {
+    width: 100% !important;
+    display: block !important;
+    border-radius: 0 !important; /* 顶格后取消圆角防止漏色 */
+    max-width: none !important;
   }
 
   /* --- 标题与日期字号修改开始 --- */
