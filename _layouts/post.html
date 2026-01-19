@@ -27,16 +27,37 @@ layout: default
   </div>
 
   <div style="font-size: 13px; color: #bbb; text-align: right;">
-    {% if page.previous %}
-      <a href="{{ page.previous.url | relative_url }}" style="color: #bbb; text-decoration: none;">上一篇</a>
+    {% assign current_category = page.categories | first %}
+    {% if current_category %}
+      {% assign category_posts = site.categories[current_category] %}
+      
+      {% for post in category_posts %}
+        {% if post.url == page.url %}
+          {% assign prev_index = forloop.index0 | plus: 1 %}
+          {% assign next_index = forloop.index0 | minus: 1 %}
+          
+          {% if prev_index < category_posts.size %}
+            {% assign prev_post = category_posts[prev_index] %}
+          {% endif %}
+          
+          {% if next_index >= 0 %}
+            {% assign next_post = category_posts[next_index] %}
+          {% endif %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
     {% endif %}
 
-    {% if page.previous and page.next %}
+    {% if prev_post %}
+      <a href="{{ prev_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">上一篇</a>
+    {% endif %}
+
+    {% if prev_post and next_post %}
       <span style="margin: 0 10px;">|</span>
     {% endif %}
 
-    {% if page.next %}
-      <a href="{{ page.next.url | relative_url }}" style="color: #bbb; text-decoration: none;">下一篇</a>
+    {% if next_post %}
+      <a href="{{ next_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">下一篇</a>
     {% endif %}
   </div>
 </footer>
