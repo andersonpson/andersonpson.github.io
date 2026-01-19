@@ -14,16 +14,31 @@ layout: default
     /* 继承全局字体 */
     font-family: inherit;
   }
-  .latest-record {
+ .latest-record {
     font-size: 0.9em;
-    color: #444;
+    color: #999; /* 默认灰色 */
     margin-bottom: 12px;
   }
   .latest-record a {
     text-decoration: none;
-    color: #000;
+    color: inherit; /* 继承父级颜色 */
     font-weight: 500;
     margin-left: 5px;
+  }
+
+  /* 增加针对深色模式的适配 */
+  [data-theme="dark"] .latest-record {
+    color: var(--meta-color) !important;
+  }
+  [data-theme="dark"] .latest-record a {
+    color: var(--meta-color) !important;
+  }
+  [data-theme="dark"] #search-button {
+    color: var(--meta-color) !important;
+  }
+  [data-theme="dark"] #search-input {
+    border-bottom-color: var(--meta-color) !important;
+    color: var(--meta-color);
   }
   .search-container {
     display: flex;
