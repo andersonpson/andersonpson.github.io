@@ -64,6 +64,23 @@ header, .home-wrapper, footer {
   text-align: left;                                 /* 强制内部文字左对齐 */
   box-sizing: border-box;                           /* 确保 Padding 不撑大容器 */
 }
+/* --- 摄影集文章专用：扩大照片展示宽度 --- */
+.post {
+  /* 仅针对文章容器：将原 50px 的左右内边距缩小至 20px */
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.inner-post-content figure {
+  width: 100% !important;
+  margin: 0 0 25px 0 !important; /* 缩小照片组之间的垂直间距 */
+}
+
+.inner-post-content figure img {
+  width: 100% !important;
+  margin-bottom: 8px !important; /* 缩小照片与描述文字的距离 */
+}
+
 
 /* --------------------------------------
    5. 顶部导航栏 (Header)
