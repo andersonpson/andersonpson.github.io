@@ -10,6 +10,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate-v2
 
+
 # 分页插件详细配置
 pagination:
   enabled: true
