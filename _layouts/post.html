@@ -12,10 +12,6 @@ layout: default
     {% comment %} 计算字数与阅读时间 {% endcomment %}
     {% assign word_count = page.content | strip_html | strip_newlines | size %}
     {% assign read_time = word_count | divided_by: 400 | plus: 1 %}
-
-    <span>{{ page.date | date: "%Y/%m/%d" }}</span>
-    
-    <span style="margin: 0 10px;">·</span>
     
     <span>约 {{ word_count }} 字</span>
     
