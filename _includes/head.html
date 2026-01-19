@@ -6,19 +6,18 @@
   <title>
     {% if page.url == "/" or page.url == "/index.html" %}
       主页.PUPPYHAT
-    {% elsif page.url contains "/about" %}
+    {% elsif page.url contains "about" %}
       关于我.PUPPYHAT
-    {% elsif page.url contains "/category/desiccant/" %}
+    {% elsif page.url contains "desiccant" %}
       蓝色添加剂之死.PUPPYHAT
-    {% elsif page.url contains "/category/balloon/" %}
+    {% elsif page.url contains "balloon" %}
       气球悲歌.PUPPYHAT
-    {% elsif page.url contains "/category/photos/" %}
+    {% elsif page.url contains "photos" %}
       照片.PUPPYHAT
     {% else %}
-      {{ site.name }}
+      {{ page.title | default: site.name }}
     {% endif %}
   </title>
 
-  {% seo %}
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
 </head>
