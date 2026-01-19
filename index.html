@@ -84,13 +84,20 @@ layout: default
   }
 </style>
 
-<div class="home-functional-area">
-  <div class="latest-record">
-    最新的记录：
-    {% for post in site.posts limit:1 %}
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    {% endfor %}
-  </div>
+<div class="latest-record">
+  最新的记录：
+  {% comment %} 
+    手动强制按日期从新到旧重新排序，确保拿到的是 date 最晚的那篇 
+  {% endcomment %}
+  {% assign latest_articles = site.posts | sort: "date" | reverse %}
+  {% assign target_post = latest_articles[0] %}
+
+  {% if target_post %}
+    <a href="{{ target_post.url | relative_url }}">{{ target_post.title }}</a>
+  {% else %}
+    <span style="color: #ccc;">未监测到上传记录</span>
+  {% endif %}
+</div>
 
   <div class="search-container">
     <button id="search-button">点这里搜搜看</button>
