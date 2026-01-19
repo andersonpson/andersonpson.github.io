@@ -63,8 +63,10 @@
 <style>
   .home-functional-area {
     margin-top: 30px;
-    padding: 0 5%; /* 增加左右内边距，5% 可根据视觉感官调整 */
+    padding: 0 5%;
     text-align: left;
+    /* 继承全局字体 */
+    font-family: inherit;
   }
   .latest-record {
     font-size: 0.9em;
@@ -80,31 +82,36 @@
   .search-container {
     display: flex;
     align-items: center;
-    gap: 12px; /* 按钮与搜索线之间的间距 */
+    gap: 12px;
   }
+  /* 适配字体与移动端样式 */
   #search-button {
     background: none;
-    border: none; /* 移除边框 */
+    border: none;
     padding: 0;
     cursor: pointer;
     font-size: 0.85em;
     color: #666;
-    white-space: nowrap; /* 防止文字换行 */
+    white-space: nowrap;
+    font-family: inherit;
   }
   #search-input {
     border: none;
-    border-bottom: 1px solid #ccc; /* 搜索线 */
+    border-bottom: 1px solid #ccc;
     background: transparent;
     padding: 4px 0;
     outline: none;
     width: 160px;
     font-size: 0.85em;
     border-radius: 0;
+    font-family: inherit;
+    -webkit-appearance: none;
   }
   #results-container {
     list-style: none;
     padding: 0;
     margin-top: 10px;
+    font-family: inherit;
   }
   #results-container li {
     font-size: 0.85em;
@@ -128,9 +135,6 @@
     <button id="search-button">点这里搜搜看</button>
     <input type="text" id="search-input">
   </div>
-  
-  <ul id="results-container"></ul>
-</div>
   
   <ul id="results-container"></ul>
 </div>
