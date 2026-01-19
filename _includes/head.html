@@ -1,5 +1,24 @@
 <head>
   <meta charset="utf-8">
-  <title>强制测试标题</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    {% if page.url == "/" or page.url == "/index.html" %}
+      主页.PUPPYHAT
+    {% elsif page.url contains "about" %}
+      关于我.PUPPYHAT
+    {% elsif page.url contains "desiccant" %}
+      蓝色添加剂之死.PUPPYHAT
+    {% elsif page.url contains "balloon" %}
+      气球悲歌.PUPPYHAT
+    {% elsif page.url contains "photos" %}
+      照片.PUPPYHAT
+    {% else %}
+      {{ page.title | default: site.name }}
+    {% endif %}
+  </title>
+
   <link rel="stylesheet" href="{{ '/assets/main.css' | absolute_url }}">
+  {% seo %}
 </head>
