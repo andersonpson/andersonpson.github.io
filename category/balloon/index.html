@@ -60,7 +60,7 @@ pagination:
       if (e.key === 'Enter') {
         const targetPage = parseInt(this.value);
         const totalPages = parseInt("{{ paginator.total_pages }}");
-        const categoryPath = "{{ site.baseurl }}/category/desiccant/";
+        const categoryPath = "{{ site.baseurl }}/category/balloon/";
 
         // 逻辑：仅在 1 到 总页数 范围内执行跳转，否则不执行任何动作
         if (targetPage >= 1 && targetPage <= totalPages) {
