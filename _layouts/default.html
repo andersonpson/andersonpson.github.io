@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description | strip_newlines }}" href="{{ site.baseurl }}/feed.xml" />
 
-    </head>
+  </head>
 
   <body class="{% if page.url == '/' %}home-page{% endif %}">
     <div class="wrapper-masthead">
@@ -20,15 +20,15 @@
             <p class="site-description">{{ site.description | newline_to_br }}</p>
           </div>
 
-<nav>
-  {% for link in site.navigation %}
-    <a href="{{ site.baseurl }}{{ link.url }}" style="margin-right: 20px;">{{ link.name }}</a>
-  {% endfor %}
+          <nav>
+            {% for link in site.navigation %}
+              <a href="{{ site.baseurl }}{{ link.url }}" style="margin-right: 20px;">{{ link.name }}</a>
+            {% endfor %}
 
-  <a href="javascript:void(0);" id="theme-toggle" title="切换模式" style="margin-left: 20px; cursor: pointer; display: inline-flex; align-items: center; vertical-align: middle;">
-    <img id="theme-icon-img" src="{{ site.baseurl }}/assets/images/moon.png" alt="切换模式" style="width: 18px; height: 18px; display: block; border: none;">
-  </a>
-</nav>
+            <a href="javascript:void(0);" id="theme-toggle" title="切换模式" style="margin-left: 20px; cursor: pointer; display: inline-flex; align-items: center; vertical-align: middle;">
+              <img id="theme-icon-img" src="{{ site.baseurl }}/assets/images/moon.png" alt="切换模式" style="width: 18px; height: 18px; display: block; border: none;">
+            </a>
+          </nav>
         </header>
       </div>
     </div>
@@ -41,56 +41,62 @@
       <div class="container">
         <footer class="footer">
           {% include svg-icons.html %}
+          
+          <div class="copyright" style="text-align: center; margin-top: 20px; font-size: 12px; opacity: 0.8;">
+            &copy; {{ site.time | date: "%Y" }} {{ site.name }}. All rights reserved.
+          </div>
+          
         </footer>
       </div>
     </div>
 
     {% include analytics.html %}
-  </body>
-  <script>
-  // 获取元素
-  const toggleBtn = document.getElementById('theme-toggle');
-  const themeIconImg = document.getElementById('theme-icon-img');
-  const htmlElement = document.documentElement;
-
-  // 1. 初始化：读取本地存储
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  htmlElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-
-  // 2. 点击事件
-  toggleBtn.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
     
-    htmlElement.setAttribute('data-theme', targetTheme);
-    localStorage.setItem('theme', targetTheme); // 保存设置
-    updateThemeIcon(targetTheme);
-  });
+    <script>
+      // 获取元素
+      const toggleBtn = document.getElementById('theme-toggle');
+      const themeIconImg = document.getElementById('theme-icon-img');
+      const htmlElement = document.documentElement;
 
-  // 3. 图标更新逻辑
-  function updateThemeIcon(theme) {
-    if (themeIconImg) {
-      const basePath = "{{ site.baseurl }}/assets/images/";
-      if (theme === 'dark') {
-        themeIconImg.src = basePath + "sun.png";
-      } else {
-        themeIconImg.src = basePath + "moon.png";
-      }
-    }
-    
-    // 同时也尝试切换首页 Banner (如果有的话)
-    const bannerImg = document.querySelector('.home-banner img, .full-width-banner img');
-    if (bannerImg) {
-      const src = bannerImg.src;
-      if (theme === 'dark') {
-        if (!src.includes('_dark')) {
-          bannerImg.src = src.replace(/(\.jpg|\.png|\.jpeg)/, '_dark$1');
+      // 1. 初始化：读取本地存储
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      htmlElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+
+      // 2. 点击事件
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        htmlElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('theme', targetTheme); // 保存设置
+        updateThemeIcon(targetTheme);
+      });
+
+      // 3. 图标更新逻辑
+      function updateThemeIcon(theme) {
+        if (themeIconImg) {
+          const basePath = "{{ site.baseurl }}/assets/images/";
+          if (theme === 'dark') {
+            themeIconImg.src = basePath + "sun.png";
+          } else {
+            themeIconImg.src = basePath + "moon.png";
+          }
         }
-      } else {
-        bannerImg.src = src.replace('_dark', '');
+        
+        // 同时也尝试切换首页 Banner (如果有的话)
+        const bannerImg = document.querySelector('.home-banner img, .full-width-banner img');
+        if (bannerImg) {
+          const src = bannerImg.src;
+          if (theme === 'dark') {
+            if (!src.includes('_dark')) {
+              bannerImg.src = src.replace(/(\.jpg|\.png|\.jpeg)/, '_dark$1');
+            }
+          } else {
+            bannerImg.src = src.replace('_dark', '');
+          }
+        }
       }
-    }
-  }
-</script>
+    </script>
+  </body>
 </html>
