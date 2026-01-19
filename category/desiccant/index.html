@@ -1,10 +1,13 @@
 ---
 layout: default
 title: "干燥剂之死"
+pagination: 
+  enabled: true
+  category: desiccant
 ---
 
 <div class="about-container">
- <img src="/assets/images/desiccant-cover.jpg" class="category-header-img">
+  <img src="/assets/images/desiccant-cover.jpg" class="category-header-img">
 
   <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: bold;">干燥剂之死</h1>
 
@@ -12,10 +15,10 @@ title: "干燥剂之死"
     <p>旧情旧物的召回，它们曾让我了解自己是谁。</p>
   </div>
 
- <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 40px;">
- 
+  <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 40px;">
+  
   <div class="posts-list">
-    {% for post in site.categories.desiccant %}
+    {% for post in paginator.posts %}
       <article style="margin-bottom: 40px;">
         {% if post.image %}
           <img src="{{ post.image }}" style="width: 100%; margin-bottom: 15px; border-radius: 2px;">
@@ -27,4 +30,26 @@ title: "干燥剂之死"
       </article>
     {% endfor %}
   </div>
+
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #f9f9f9; font-size: 14px; color: #bbb; display: flex; align-items: center;">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">← 上一页</a>
+    {% else %}
+      <span style="color: #eee;">← 上一页</span>
+    {% endif %}
+
+    <span style="margin: 0 20px;">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">下一页 →</a>
+    {% else %}
+      <span style="color: #eee;">下一页 →</span>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+    <a href="{{ site.baseurl }}/" style="font-size: 13px; color: #bbb;">返回主页</a>
+  </footer>
 </div>
