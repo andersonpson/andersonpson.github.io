@@ -7,28 +7,30 @@
 
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description | strip_newlines }}" href="{{ site.baseurl }}/feed.xml" />
-
   </head>
 
   <body class="{% if page.url == '/' %}home-page{% endif %}">
     <div class="wrapper-masthead">
       <div class="container">
-        <header class="masthead clearfix">
-
+        <header class="masthead">
+          
           <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+            <h1 class="site-name">
+              <a href="{{ site.baseurl }}/">{{ site.name }}</a>
+            </h1>
             <p class="site-description">{{ site.description | newline_to_br }}</p>
           </div>
 
           <nav>
             {% for link in site.navigation %}
-              <a href="{{ site.baseurl }}{{ link.url }}" style="margin-right: 20px;">{{ link.name }}</a>
+              <a href="{{ site.baseurl }}{{ link.url }}">{{ link.name }}</a>
             {% endfor %}
 
-            <a href="javascript:void(0);" id="theme-toggle" title="切换模式" style="margin-left: 20px; cursor: pointer; display: inline-flex; align-items: center; vertical-align: middle;">
-              <img id="theme-icon-img" src="{{ site.baseurl }}/assets/images/moon.png" alt="切换模式" style="width: 18px; height: 18px; display: block; border: none;">
+            <a href="javascript:void(0);" id="theme-toggle" title="切换模式" class="theme-toggle-link">
+              <img id="theme-icon-img" src="{{ site.baseurl }}/assets/images/moon.png" alt="切换模式">
             </a>
           </nav>
+
         </header>
       </div>
     </div>
@@ -42,10 +44,9 @@
         <footer class="footer">
           {% include svg-icons.html %}
           
-          <div class="copyright" style="text-align: center; margin-top: 20px; font-size: 12px; opacity: 0.8;">
+          <div class="copyright">
             &copy; {{ site.time | date: "%Y" }} {{ site.name }}. All rights reserved.
           </div>
-          
         </footer>
       </div>
     </div>
@@ -53,27 +54,23 @@
     {% include analytics.html %}
     
     <script>
-      // 获取元素
       const toggleBtn = document.getElementById('theme-toggle');
       const themeIconImg = document.getElementById('theme-icon-img');
       const htmlElement = document.documentElement;
 
-      // 1. 初始化：读取本地存储
       const savedTheme = localStorage.getItem('theme') || 'light';
       htmlElement.setAttribute('data-theme', savedTheme);
       updateThemeIcon(savedTheme);
 
-      // 2. 点击事件
       toggleBtn.addEventListener('click', () => {
         const currentTheme = htmlElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
         
         htmlElement.setAttribute('data-theme', targetTheme);
-        localStorage.setItem('theme', targetTheme); // 保存设置
+        localStorage.setItem('theme', targetTheme);
         updateThemeIcon(targetTheme);
       });
 
-      // 3. 图标更新逻辑
       function updateThemeIcon(theme) {
         if (themeIconImg) {
           const basePath = "{{ site.baseurl }}/assets/images/";
@@ -84,7 +81,6 @@
           }
         }
         
-        // 同时也尝试切换首页 Banner (如果有的话)
         const bannerImg = document.querySelector('.home-banner img, .full-width-banner img');
         if (bannerImg) {
           const src = bannerImg.src;
