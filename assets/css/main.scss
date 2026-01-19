@@ -286,8 +286,8 @@ nav a {
     padding-top: 30px;
     padding-bottom: 10px;
     flex-direction: column !important; 
-    align-items: flex-start !important; /* 核心：子元素水平居左 */
-    text-align: left !important;        /* 核心：文字内容居左 */
+    align-items: flex-start !important; 
+    text-align: left !important;
   }
   
   /* 2. 【梯度 1】网站大标题 20px - 居左 */
@@ -313,7 +313,7 @@ nav a {
     margin-top: 10px; 
     width: 100%; 
     display: flex; 
-    justify-content: flex-start;        /* 链接从左侧开始 */
+    justify-content: flex-start;
     overflow-x: auto; 
     -webkit-overflow-scrolling: touch; 
     padding-bottom: 5px;
@@ -321,7 +321,7 @@ nav a {
   }
   
   nav a { 
-    margin: 0 12px 0 0;                 /* 使用右边距产生间距 */
+    margin: 0 12px 0 0;
     font-size: 14px !important;
     white-space: nowrap;
     flex-shrink: 0;
@@ -388,17 +388,21 @@ nav a {
   }
   .inner-post-content p { text-indent: 2em !important; }
 
-  /* 11. 功能按钮与 Banner */
+  /* 11. 功能按钮与 Banner 适配 - 手机端坐标 */
   .home-banner { padding: 0 15px; }
+
   #theme-toggle {
-    margin-top: 10px;
-    margin-left: 0 !important;          /* 居左对齐时重置左边距 */
-    padding: 5px 0;
-    flex-shrink: 0;
+    position: absolute !important; 
+    top: 20px !important;  /* 手机端间距 20px */
+    right: 20px !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    z-index: 10000;
+    line-height: 0;
   }
 
   /* 12. 核心核验：手机端版权 8px */
-  /* 置于末尾确保覆盖全局样式 */
   .copyright {
     font-size: 8px !important; 
     margin-top: 15px !important; 
@@ -406,4 +410,25 @@ nav a {
     opacity: 0.7; 
     text-align: center !important; 
   }
+} /* 第 7 点 @media 块结束 */
+
+/* --------------------------------------
+   针对桌面端（宽屏）的功能按钮坐标设定
+   -------------------------------------- */
+@media (min-width: 601px) {
+  #theme-toggle {
+    position: absolute !important;
+    top: 25px !important;   /* 电脑端间距 25px */
+    right: 25px !important;
+    display: block !important;
+    z-index: 10000;
+  }
+}
+
+/* 按钮图标通用尺寸定义 */
+#theme-toggle img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  border: none;
 }
