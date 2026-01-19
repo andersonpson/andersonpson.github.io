@@ -63,31 +63,37 @@
 <style>
   .home-functional-area {
     margin-top: 30px;
+    padding: 0 5%; /* 增加左右内边距，5% 可根据视觉感官调整 */
     text-align: left;
-    max-width: 100%;
   }
-  /* 第一行：最新记录样式 */
   .latest-record {
     font-size: 0.9em;
     color: #444;
-    margin-bottom: 15px; /* 与下方搜索框的间距 */
+    margin-bottom: 12px;
   }
   .latest-record a {
     text-decoration: none;
     color: #000;
     font-weight: 500;
     margin-left: 5px;
-    border-bottom: 1px solid #eee;
   }
-  /* 第二行：搜索区域样式 */
   .search-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px; /* 按钮与搜索线之间的间距 */
+  }
+  #search-button {
+    background: none;
+    border: none; /* 移除边框 */
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.85em;
+    color: #666;
+    white-space: nowrap; /* 防止文字换行 */
   }
   #search-input {
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc; /* 搜索线 */
     background: transparent;
     padding: 4px 0;
     outline: none;
@@ -95,19 +101,6 @@
     font-size: 0.85em;
     border-radius: 0;
   }
-  #search-button {
-    background: #fafafa;
-    border: 1px solid #ddd;
-    padding: 2px 12px;
-    cursor: pointer;
-    font-size: 0.75em;
-    color: #666;
-    transition: all 0.2s;
-  }
-  #search-button:hover {
-    background: #f0f0f0;
-  }
-  /* 搜索结果列表样式 */
   #results-container {
     list-style: none;
     padding: 0;
@@ -119,8 +112,7 @@
   }
   #results-container li a {
     text-decoration: none;
-    color: #666;
-    border-bottom: 1px dotted #ccc;
+    color: #888;
   }
 </style>
 
@@ -133,9 +125,12 @@
   </div>
 
   <div class="search-container">
-    <input type="text" id="search-input">
     <button id="search-button">点这里搜搜看</button>
+    <input type="text" id="search-input">
   </div>
+  
+  <ul id="results-container"></ul>
+</div>
   
   <ul id="results-container"></ul>
 </div>
