@@ -17,13 +17,27 @@ layout: default
     编辑于 {{ page.date | date: "%Y-%m-%d" }}
   </div>
 
-  <footer style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: left !important;">
-    <div style="font-size: 13px; color: #bbb;">
-      {% if page.categories.size > 0 %}
-        <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb;">返回目录</a>
-      {% endif %}
+<footer style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
+  <div style="font-size: 13px; color: #bbb;">
+    {% if page.categories.size > 0 %}
+      <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb; text-decoration: none;">返回目录</a>
+    {% endif %}
+    <span style="margin: 0 10px;">|</span>
+    <a href="{{ site.baseurl }}/" style="color: #bbb; text-decoration: none;">返回主页</a>
+  </div>
+
+  <div style="font-size: 13px; color: #bbb;">
+    {% if page.previous %}
+      <a href="{{ page.previous.url | relative_url }}" style="color: #bbb; text-decoration: none;">上一篇</a>
+    {% endif %}
+
+    {% if page.previous and page.next %}
       <span style="margin: 0 10px;">|</span>
-      <a href="{{ site.baseurl }}/" style="color: #bbb;">返回主页</a>
-    </div>
-  </footer>
+    {% endif %}
+
+    {% if page.next %}
+      <a href="{{ page.next.url | relative_url }}" style="color: #bbb; text-decoration: none;">下一篇</a>
+    {% endif %}
+  </div>
+</footer>
 </article>
