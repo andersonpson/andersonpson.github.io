@@ -34,21 +34,58 @@ pagination:
   </div>
 
   {% if paginator.total_pages > 1 %}
-  <div class="pagination" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #f9f9f9; font-size: 14px; color: #bbb; display: flex; align-items: center;">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">← 上一页</a>
-    {% else %}
-      <span style="color: #eee;">← 上一页</span>
-    {% endif %}
+  <div class="pagination" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #f9f9f9; font-size: 14px; color: #bbb; display: flex; justify-content: space-between; align-items: center;">
+    
+    <div style="display: flex; gap: 20px;">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">上一页</a>
+      {% endif %}
 
-    <span style="margin: 0 20px;">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">下一页</a>
+      {% endif %}
+    </div>
 
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">下一页 →</a>
-    {% else %}
-      <span style="color: #eee;">下一页 →</span>
-    {% endif %}
+    <div style="display: flex; align-items: center;">
+      <input type="number" 
+             id="page-jump-input" 
+             value="{{ paginator.page }}" 
+             min="1" 
+             max="{{ paginator.total_pages }}"
+             style="width: 32px; border: none; border-bottom: 1px solid #eee; background: transparent; text-align: center; font-family: inherit; font-size: 14px; outline: none; color: #666; padding: 0; -moz-appearance: textfield;">
+      <span style="margin-left: 5px; color: #bbb;">/ {{ paginator.total_pages }}</span>
+    </div>
   </div>
+
+  <script>
+    document.getElementById('page-jump-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        const targetPage = parseInt(this.value);
+        const totalPages = parseInt("{{ paginator.total_pages }}");
+        const categoryPath = "{{ site.baseurl }}/category/desiccant/";
+
+        // 严格判断：仅在有效页码范围内跳转，否则不执行 window.location.href
+        if (targetPage >= 1 && targetPage <= totalPages) {
+          if (targetPage === 1) {
+            window.location.href = categoryPath;
+          } else {
+            window.location.href = categoryPath + "page" + targetPage + "/";
+          }
+        } else {
+          // 超出范围时重置输入框数字，不进行跳转
+          this.value = "{{ paginator.page }}";
+        }
+      }
+    });
+
+    // 移除 Chrome/Safari 数字输入框样式
+    const styleSheet = document.createElement('style');
+    styleSheet.innerText = `
+      #page-jump-input::-webkit-outer-spin-button,
+      #page-jump-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    `;
+    document.head.appendChild(styleSheet);
+  </script>
   {% endif %}
 
   <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
