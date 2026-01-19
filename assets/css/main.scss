@@ -198,13 +198,21 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
     box-sizing: border-box;
   }
 
-  /* 核心修改：让照片在手机端填充全宽并收紧间距 */
-  .post img, .post figure {
+/* 核心修改：让照片在手机端填充全宽并收紧间距 */
+  .post img {
     width: 100% !important; 
     max-width: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    margin-bottom: 25px !important; /* 缩小图片间的物理间距 */
+    display: block;
+    border-radius: 0; /* 顶格后取消图片圆角视觉效果更好 */
+  }
+
+  .post figure {
+    width: auto !important;
+    /* 关键：使用负外边距抵消父容器 .post 的 5px padding */
+    margin-left: -5px !important; 
+    margin-right: -5px !important;
+    margin-top: 0 !important;
+    margin-bottom: 25px !important;
   }
 
   /* --- 标题与日期字号修改开始 --- */
