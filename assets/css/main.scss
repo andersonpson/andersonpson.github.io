@@ -181,25 +181,55 @@ nav a {
 
 /* --------------------------------------
    7. 响应式适配 (Mobile Styles)
+   该区域内的代码仅在屏幕宽度 <= 600px 时生效
    -------------------------------------- */
 @media (max-width: 600px) {
-  header {
+  
+  /* 1. 顶部页眉布局：由电脑端的左右并排改为垂直居中堆叠 */
+  header.masthead {
     padding-top: 30px;
     padding-bottom: 10px;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column !important; 
+    align-items: center !important;
+    text-align: center !important;
   }
   
-  header h1 a { font-size: 30px !important; display: block; margin-bottom: 5px; }
+  /* 2. 【梯度 1】网站大标题字号设置：20px */
+  .site-name, 
+  header h1.site-name a { 
+    font-size: 20px !important; 
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: bold;
+  }
 
+  /* 3. 站点介绍文字字号：13px（略小于正文 15px 以显出层次） */
+  .site-description {
+    font-size: 13px !important;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+  /* 4. 导航栏调整：居中并支持溢出横向滑动 */
   nav {
-    margin-top: 15px; width: 100%; display: flex; justify-content: center;
-    overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px;
+    margin-top: 10px; 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    padding-bottom: 5px;
   }
   
-  nav a { margin: 0 6px; font-size: 13px; white-space: nowrap; flex-shrink: 0; }
+  /* 5. 导航链接：缩小字号并防止折行 */
+  nav a { 
+    margin: 0 8px;
+    font-size: 14px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 
-  /* 手机端内容容器适配 */
+  /* 6. 内容容器适配：保持 96% 宽度防止贴边 */
   .page, .post, .page-content, .posts, .about-container {
     padding: 15px 5px !important;
     margin: 10px auto !important;
@@ -208,7 +238,7 @@ nav a {
     overflow: hidden;
   }
 
-  /* 核心：负外边距实现图片与玻璃框等宽 */
+  /* 7. 图片处理：负边距抵消容器边距，实现图片左右贴边全屏 */
   .inner-post-content figure {
     width: auto !important;
     margin-left: -5px !important; 
@@ -218,26 +248,54 @@ nav a {
   }
 
   .inner-post-content figure img {
-    border-radius: 0 !important; /* 顶格后取消圆角 */
+    border-radius: 0 !important;
     max-width: none !important;
   }
 
-  /* 字号适配 */
-  .page-content h1, .about-container h1, .post h1, h1, .posts-list h2, .posts-list h2 a {
-    font-size: 18px !important; margin-bottom: 10px !important; line-height: 1.3 !important;
+  /* 8. 【梯度 2】分类小标题字号：17px (非文章标题，如“最新的记录”) */
+  .page-heading, 
+  .post-list-heading,
+  h2.post-list-heading {
+    font-size: 17px !important;
+    margin-top: 25px !important;
+    margin-bottom: 12px !important;
+    font-weight: bold;
   }
 
+  /* 9. 【梯度 3】具体文章标题字号：16px (列表页标题及正文内文章标题) */
+  .post-title,
+  .post-title a,
+  .posts-list h2, 
+  .posts-list h2 a,
+  .post h1,
+  h1 {
+    font-size: 16px !important;
+    margin-bottom: 10px !important; 
+    line-height: 1.4 !important;
+    font-weight: bold;
+  }
+
+  /* 10. 辅助性文本：日期、字数信息缩小至 11px */
   .posts-list span, .post-date-bottom, .post-date, .post-meta {
-    font-size: 11px !important; color: var(--meta-color) !important;
+    font-size: 11px !important;
+    color: var(--meta-color) !important;
   }
 
+  /* 11. 全局与正文字体：15px，开启首行缩进 */
   body { font-size: 15px; }
-  p, .post-content, .inner-post-content p { font-size: 15px !important; line-height: 1.7; }
-  .inner-post-content p { text-indent: 2em !important; }
+  p, .post-content, .inner-post-content p { 
+    font-size: 15px !important;
+    line-height: 1.7;
+  }
+  .inner-post-content p { 
+    text-indent: 2em !important; 
+  }
 
-  .home-banner { padding: 0 15px; }
+  /* 12. 首页图片 Banner 适配 */
+  .home-banner { 
+    padding: 0 15px; 
+  }
 }
-
 /* --------------------------------------
    8. 文章排版与分类列表微调
    -------------------------------------- */
@@ -334,23 +392,42 @@ nav a {
   color: var(--text-color) !important;
 }
 
-/* 6. 导航栏和手机端优化 */
+/* ==========================================================
+   6. 导航栏和手机端优化
+   ========================================================== */
+
+/* 深色模式下的导航文字颜色 - 全平台生效 */
 [data-theme="dark"] nav a {
   color: var(--meta-color) !important;
 }
+
+/* 手机端专属布局微调 */
 @media (max-width: 600px) {
-  nav { align-items: center; }
+  nav { 
+    align-items: center; 
+  }
   #theme-toggle {
     margin-left: 15px !important;
     padding: 10px;
     margin-right: -10px;
     flex-shrink: 0;
   }
-   /* 在 _sass/_main.scss 底部 */
-.copyright {
-  color: #999; 
 }
+
+/* ==========================================================
+   7. 版权声明 (Copyright) 样式 - 移出媒体查询，全平台生效
+   ========================================================== */
+
+.copyright {
+  font-size: 12px !important;    /* 显式设置字号 */
+  text-align: center;
+  margin-top: 20px;
+  color: #999;                   /* 白天模式颜色 */
+  opacity: 0.8;
+}
+
+/* 深色模式下的版权文字颜色 */
 [data-theme="dark"] .copyright {
   color: var(--meta-color) !important; 
 }
-}
+
