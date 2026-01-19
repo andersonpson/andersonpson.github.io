@@ -19,13 +19,13 @@
 /* 替换 _sass/_main.scss 第 1 部分的深色模式变量 */
 [data-theme="dark"] {
   --bg-color: #1a1c22;              
-  --text-color: #dcdcdc;            /* 正文：柔和的灰白，不再是刺眼的纯白 */
-  --link-color: #dcdcdc;            /* 链接：同上，保持柔和 */
-  --link-hover: #ffad5c;            /* 悬停高亮色保持不变 */
+  --text-color: #d6d2c4;            /* 正文：较暗的米灰色，护眼 */
+  --link-color: #d6d2c4;            /* 链接：同上 */
+  --link-hover: #ffad5c;            /* 悬停高亮：暖橙色 */
   --glass-bg: rgba(30, 34, 40, 0.85); 
   --glass-border: rgba(255, 255, 255, 0.15);
-  --meta-color: #a0a0a0;            /* 元数据：稍微暗一点的灰，拉开层次 */
-  --header-title: #e6e6e6;          /* 标题：稍微亮一点的灰白 */
+  --meta-color: #99968b;            /* 元数据：暖灰褐色 */
+  --header-title: #e8e4d0;          /* 标题：明亮的米黄色 (Rice White) */
 }
 /* --------------------------------------
    2. 字体定义 (Font Setup)
@@ -273,55 +273,56 @@ nav a {
 .full-width-banner { width: 100% !important; margin: 0 !important; padding: 0 !important; line-height: 0; }
 .full-width-banner img { width: 100% !important; height: auto !important; display: block; border-radius: 0 !important; }
 
-/* ======================================================
-   深色模式强制覆盖补丁 V2 (Dark Mode Overrides - Soft White)
-   ====================================================== */
+/* ==========================================================
+   深色模式终极补丁 (Dark Mode Final Patch - Warm & Force)
+   ========================================================== */
 
-/* 1. 强制修复所有标题和文章链接颜色 */
+/* 1. 全局标题米黄色 (Rice White) */
 [data-theme="dark"] h1, 
 [data-theme="dark"] h2, 
 [data-theme="dark"] h3, 
 [data-theme="dark"] h4,
 [data-theme="dark"] .post-title,
-[data-theme="dark"] .posts-list h2 a,
-[data-theme="dark"] .post-link {
-  color: var(--header-title) !important; 
+[data-theme="dark"] .post-title a {
+  color: var(--header-title) !important;
 }
 
-/* 2. 核心修复：强制所有容器内的链接和文字变色 
-   (专门解决“最新的记录”和“搜索”部分的顽固黑色) */
+/* 2. 【核心修复】强制内容区域的所有链接颜色跟随文字 
+   解决“摇晃的旧日”等顽固黑色问题，同时防止变为蓝色/紫色 */
+[data-theme="dark"] #main a,
 [data-theme="dark"] .container a,
-[data-theme="dark"] .container span,
+[data-theme="dark"] article a,
+[data-theme="dark"] .posts-list a {
+  color: var(--header-title) !important; /* 强制所有链接变为米黄色 */
+  text-decoration-color: var(--meta-color); /* 下划线稍微暗一点 */
+}
+
+/* 3. 针对“最新记录”后面的描述文字 */
+[data-theme="dark"] #main p,
 [data-theme="dark"] .container p,
-[data-theme="dark"] .container li {
+[data-theme="dark"] .entry-content,
+[data-theme="dark"] li,
+[data-theme="dark"] span {
   color: var(--text-color) !important;
 }
 
-/* 3. 修复搜索框占位符和输入文字 (针对“点这里搜搜看”) */
+/* 4. 修复搜索框 (输入文字变为米色) */
 [data-theme="dark"] input,
 [data-theme="dark"] textarea {
   background-color: transparent !important;
-  color: var(--text-color) !important;
+  color: var(--header-title) !important;
   border-bottom: 1px solid var(--meta-color) !important;
 }
-[data-theme="dark"] ::placeholder { /* Chrome, Firefox, Opera, Safari */
+[data-theme="dark"] ::placeholder {
   color: var(--meta-color) !important;
-  opacity: 1;
 }
 
-/* 4. 修复首页列表摘要和正文 */
-[data-theme="dark"] .posts-list p,
-[data-theme="dark"] .entry-content,
-[data-theme="dark"] .post-content {
-  color: var(--text-color) !important;
-}
-
-/* 5. 导航菜单适配 */
+/* 5. 导航栏保持一致 */
 [data-theme="dark"] nav a {
   color: var(--meta-color) !important;
 }
 
-/* 6. 手机端触摸优化 */
+/* 6. 手机端优化 */
 @media (max-width: 600px) {
   nav { align-items: center; }
   #theme-toggle {
