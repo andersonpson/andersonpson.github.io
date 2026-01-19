@@ -1,0 +1,24 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    {% if page.url == "/" or page.url == "/index.html" %}
+      主页.PUPPYHAT
+    {% elsif page.url contains "/about" %}
+      关于我.PUPPYHAT
+    {% elsif page.url contains "/category/desiccant/" %}
+      蓝色添加剂之死.PUPPYHAT
+    {% elsif page.url contains "/category/balloon/" %}
+      气球悲歌.PUPPYHAT
+    {% elsif page.url contains "/category/photos/" %}
+      照片.PUPPYHAT
+    {% else %}
+      {{ site.name }}
+    {% endif %}
+  </title>
+
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+</head>
