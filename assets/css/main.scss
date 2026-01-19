@@ -346,4 +346,11 @@ nav a {
     margin-right: -10px;
     flex-shrink: 0;
   }
+   /* 在 _sass/_main.scss 底部 */
+.copyright {
+  color: #999; 
+}
+[data-theme="dark"] .copyright {
+  color: var(--meta-color) !important; 
+}
 }
