@@ -25,16 +25,17 @@
 
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
     <link rel="alternate" type="application/rss+xml" title="小狗帽子和永恒泡芙 - 一些我存在的证据，在时光里它们曾部分代表或属于我。「干燥剂之死」是数年前的一次自我剖析「气球悲歌」是新的零碎东西" href="/feed.xml" />
-
   </head>
 
   <body class="">
     <div class="wrapper-masthead">
       <div class="container">
-        <header class="masthead clearfix">
-
+        <header class="masthead">
+          
           <div class="site-info">
-            <h1 class="site-name"><a href="/">小狗帽子和永恒泡芙</a></h1>
+            <h1 class="site-name">
+              <a href="/">小狗帽子和永恒泡芙</a>
+            </h1>
             <p class="site-description">一些我存在的证据，在时光里它们曾部分代表或属于我。<br />
 「干燥剂之死」是数年前的一次自我剖析<br />
 「气球悲歌」是新的零碎东西<br />
@@ -43,19 +44,20 @@
 
           <nav>
             
-              <a href="/category/balloon/" style="margin-right: 20px;">气球悲歌</a>
+              <a href="/category/balloon/">气球悲歌</a>
             
-              <a href="/category/desiccant/" style="margin-right: 20px;">蓝色干燥剂之死</a>
+              <a href="/category/desiccant/">蓝色干燥剂之死</a>
             
-              <a href="/category/photos/" style="margin-right: 20px;">照片</a>
+              <a href="/category/photos/">照片</a>
             
-              <a href="/about" style="margin-right: 20px;">关于我</a>
+              <a href="/about">关于我</a>
             
 
-            <a href="javascript:void(0);" id="theme-toggle" title="切换模式" style="margin-left: 20px; cursor: pointer; display: inline-flex; align-items: center; vertical-align: middle;">
-              <img id="theme-icon-img" src="/assets/images/moon.png" alt="切换模式" style="width: 18px; height: 18px; display: block; border: none;">
+            <a href="javascript:void(0);" id="theme-toggle" title="切换模式" class="theme-toggle-link">
+              <img id="theme-icon-img" src="/assets/images/moon.png" alt="切换模式">
             </a>
           </nav>
+
         </header>
       </div>
     </div>
@@ -215,10 +217,9 @@
 
 
           
-          <div class="copyright" style="text-align: center; margin-top: 20px; font-size: 12px; opacity: 0.8;">
+          <div class="copyright">
             &copy; 2026 小狗帽子和永恒泡芙. All rights reserved.
           </div>
-          
         </footer>
       </div>
     </div>
@@ -227,27 +228,23 @@
 
     
     <script>
-      // 获取元素
       const toggleBtn = document.getElementById('theme-toggle');
       const themeIconImg = document.getElementById('theme-icon-img');
       const htmlElement = document.documentElement;
 
-      // 1. 初始化：读取本地存储
       const savedTheme = localStorage.getItem('theme') || 'light';
       htmlElement.setAttribute('data-theme', savedTheme);
       updateThemeIcon(savedTheme);
 
-      // 2. 点击事件
       toggleBtn.addEventListener('click', () => {
         const currentTheme = htmlElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
         
         htmlElement.setAttribute('data-theme', targetTheme);
-        localStorage.setItem('theme', targetTheme); // 保存设置
+        localStorage.setItem('theme', targetTheme);
         updateThemeIcon(targetTheme);
       });
 
-      // 3. 图标更新逻辑
       function updateThemeIcon(theme) {
         if (themeIconImg) {
           const basePath = "/assets/images/";
@@ -258,7 +255,6 @@
           }
         }
         
-        // 同时也尝试切换首页 Banner (如果有的话)
         const bannerImg = document.querySelector('.home-banner img, .full-width-banner img');
         if (bannerImg) {
           const src = bannerImg.src;
