@@ -5,6 +5,19 @@ description: |
   「气球悲歌」是新的零碎东西
 avatar: /assets/images/avatar.jpg
 
+# 插件列表：必须包含分页插件
+plugins:
+  - jekyll-feed
+  - jekyll-paginate-v2
+
+# 分页插件详细配置
+pagination:
+  enabled: true
+  per_page: 10              # 每页显示的文章数量
+  permalink: '/page:num/'   # 生成的 URL 格式，例如 /category/desiccant/page2/
+  title_suffix: ' - 第 :num 页'
+  index_page_name: 'index.html'
+
 sass:
   style: :compressed
 
@@ -17,4 +30,5 @@ navigation:
 footer-links:
   instagram: darkclouds_watch 
 
-exclude: [Gemfile, Gemfile.lock, node_modules, vendor]
+# 排除干扰文件（注意：编译时 Actions 会读取 Gemfile，但不会将其拷贝到站点目录）
+exclude: [Gemfile, Gemfile.lock, node_modules, vendor, .listen_test, .github]
