@@ -194,18 +194,59 @@
     
   </div>
 
-  
-  <div class="pagination" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #f9f9f9; font-size: 14px; color: #bbb; display: flex; align-items: center;">
-    
-      <a href="/category/desiccant/page2/" style="color: #666; text-decoration: none;">← 上一页</a>
-    
 
-    <span style="margin: 0 20px;">3 / 4</span>
+  <div class="pagination" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #f9f9f9; font-size: 14px; color: #bbb; display: flex; justify-content: space-between; align-items: center;">
+    
+    <div style="display: flex; gap: 20px;">
+      
+        <a href="/category/desiccant/page2/" style="color: #666; text-decoration: none;">上一页</a>
+      
 
-    
-      <a href="/category/desiccant/page4/" style="color: #666; text-decoration: none;">下一页 →</a>
-    
+      
+        <a href="/category/desiccant/page4/" style="color: #666; text-decoration: none;">下一页</a>
+      
+    </div>
+
+    <div style="display: flex; align-items: center;">
+      <input type="number" 
+             id="page-jump-input" 
+             value="3" 
+             min="1" 
+             max="4"
+             style="width: 30px; border: none; border-bottom: 1px solid #eee; background: transparent; text-align: center; font-family: inherit; font-size: 14px; outline: none; color: #666; padding: 0; -moz-appearance: textfield;">
+      <span style="margin-left: 5px; color: #bbb;">/ 4</span>
+    </div>
   </div>
+
+  <script>
+    document.getElementById('page-jump-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        const targetPage = parseInt(this.value);
+        const totalPages = parseInt("4");
+        const categoryPath = "/category/desiccant/";
+
+        // 逻辑：仅在 1 到 总页数 范围内执行跳转，否则不执行任何动作
+        if (targetPage >= 1 && targetPage <= totalPages) {
+          if (targetPage === 1) {
+            window.location.href = categoryPath;
+          } else {
+            window.location.href = categoryPath + "page" + targetPage + "/";
+          }
+        } else {
+          // 输入非法或超过页数，保持现状并重置显示数字
+          this.value = "3";
+        }
+      }
+    });
+
+    // 隐藏数字输入框默认的增减箭头
+    const styleTag = document.createElement('style');
+    styleTag.innerHTML = `
+      #page-jump-input::-webkit-outer-spin-button,
+      #page-jump-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    `;
+    document.head.appendChild(styleTag);
+  </script>
   
 
   <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
