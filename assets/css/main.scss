@@ -2,16 +2,30 @@
 ---
 
 /* --------------------------------------
-   1. 变量定义 (Global Variables) - 为深色模式预留
+   1. 变量定义 (Global Variables)
    -------------------------------------- */
 :root {
-  --bg-color: #fcfcf5;             /* 纸质感背景色 */
-  --text-color: #2c2c2c;           /* 正文颜色 */
-  --link-color: #4a4a4a;           /* 链接颜色 */
-  --link-hover: #a0522d;           /* 悬停颜色 */
+  /* 浅色模式变量 (默认) */
+  --bg-color: #fcfcf5;              /* 纸质感背景色 */
+  --text-color: #2c2c2c;            /* 正文颜色 */
+  --link-color: #4a4a4a;            /* 链接颜色 */
+  --link-hover: #a0522d;            /* 悬停颜色 */
   --glass-bg: rgba(255, 255, 255, 0.45); /* 磨砂玻璃背景 */
   --glass-border: rgba(255, 255, 255, 0.3); /* 磨砂玻璃边缘 */
-  --meta-color: #999;              /* 日期等元数据颜色 */
+  --meta-color: #999;               /* 日期等元数据颜色 */
+  --header-title: #000;             /* 网站标题颜色 */
+}
+
+/* 深色模式变量：基于 [data-theme="dark"] 属性切换 */
+[data-theme="dark"] {
+  --bg-color: #1a1c22;              /* 深灰微蓝调背景 */
+  --text-color: #d1d1d1;            /* 浅灰文字，避免纯白刺眼 */
+  --link-color: #a0a0a0;            /* 深色模式链接颜色 */
+  --link-hover: #e67e22;            /* 深色模式悬停颜色 */
+  --glass-bg: rgba(35, 39, 47, 0.7);  /* 深色磨砂：增加厚重感 */
+  --glass-border: rgba(255, 255, 255, 0.08); /* 减弱深色边缘线 */
+  --meta-color: #666;               /* 深色模式元数据颜色 */
+  --header-title: #ececec;          /* 深色模式标题颜色 */
 }
 
 /* --------------------------------------
@@ -85,14 +99,28 @@ header {
   padding-top: 60px;
   padding-bottom: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
+  justify-content: space-between; /* 标题居左，导航居右 */
+  align-items: baseline;          /* 底部基准线对齐 */
+  flex-wrap: wrap;                /* 适配手机端换行 */
 }
 
-header h1 a { font-size: 32px; font-weight: bold; color: #000; }
-header p { font-size: 14px; color: #666; margin-top: 5px; }
-nav a { margin-left: 20px; font-size: 16px; color: #666; }
+header h1 a { 
+  font-size: 32px; 
+  font-weight: bold; 
+  color: var(--header-title); /* 替换为变量：随模式切换黑/灰白 */
+}
+
+header p { 
+  font-size: 14px; 
+  color: var(--meta-color);   /* 替换为变量：随模式切换深灰/浅灰 */
+  margin-top: 5px; 
+}
+
+nav a { 
+  margin-left: 20px; 
+  font-size: 16px; 
+  color: var(--meta-color);   /* 替换为变量：随模式切换深灰/浅灰 */
+}
 
 /* --------------------------------------
    6. 图片控制 (Images Alignment)
