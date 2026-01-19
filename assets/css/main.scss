@@ -173,12 +173,21 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
     flex-shrink: 0;  
   }
 
-  /* C. 内容容器适配 */
+/* C. 内容容器适配 - 提升宽度并取消侧边距 */
   .page, .post, .page-content, .posts, .about-container { 
-    padding: 5px !important;
+    padding: 15px 5px !important; /* 缩小左右内边距 */
     margin: 10px auto !important;
-    width: 92% !important;      
+    width: 96% !important;      /* 宽度从 92% 提升至 96% */
     box-sizing: border-box;
+  }
+
+  /* 核心修改：让照片在手机端填充全宽并收紧间距 */
+  .post img, .post figure {
+    width: 100% !important; 
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 25px !important; /* 缩小图片间的物理间距 */
   }
 
   /* --- 标题与日期字号修改开始 --- */
@@ -265,7 +274,8 @@ nav a { margin-left: 20px; font-size: 16px; color: #666; }
 .inner-post-content h3,
 .inner-post-content blockquote,
 .inner-post-content ul,
-.inner-post-content ol {
+.inner-post-content ol,
+.inner-post-content figure {  /* 新增排除 figure */
   text-indent: 0 !important; 
 }
 
