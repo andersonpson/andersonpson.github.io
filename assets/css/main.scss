@@ -354,3 +354,64 @@ nav a {
   color: var(--meta-color) !important; 
 }
 }
+
+/* ==========================================================
+   电脑端 Header 专属重构 (Desktop Header Redesign)
+   只在屏幕宽度大于 768px 时生效，手机端不受影响
+   ========================================================== */
+@media (min-width: 768px) {
+
+  /* 1. 开启 Flex 布局：实现“左边文字，右边导航” */
+  .masthead {
+    display: flex;
+    justify-content: space-between; /* 两端对齐：左一组，右一组 */
+    align-items: flex-start;        /* 顶部对齐（根据你的描述，为了让描述文字在标题正下方，顶部对齐比较稳妥，或者 center 也可以） */
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  /* 2. 左侧区域 (标题 + 描述) */
+  .site-info {
+    text-align: left !important;    /* 强制靠左 */
+    float: none !important;         /* 清除浮动干扰 */
+    max-width: 60%;                 /* 限制宽度，防止和右边打架 */
+  }
+
+  /* 2.1 标题 (小狗帽子) 样式 */
+  .site-name {
+    font-size: 2.4rem !important;   /* 字体加大 (原版大概是 1.5-2.0) */
+    margin-top: 0;
+    margin-bottom: 15px;            /* 标题和描述拉开一点距离 */
+    line-height: 1.2;
+  }
+
+  /* 2.2 描述 (下面的介绍文字) 样式 */
+  .site-description {
+    font-size: 1.1rem !important;   /* 字体稍微加大 */
+    margin: 0;
+    line-height: 1.6;
+    text-align: left !important;    /* 确保描述也是左对齐 */
+  }
+
+  /* 3. 右侧导航区域 (Nav) */
+  nav {
+    float: none !important;         /* 清除浮动 */
+    margin-top: 10px !important;    /* 微调垂直位置，使其跟标题视觉对齐 */
+    text-align: right;
+    display: flex;                  /* 导航内部也用 flex */
+    align-items: center;            /* 垂直居中 */
+    gap: 25px;                      /* 链接之间的间距，代替 margin */
+  }
+
+  /* 3.1 导航链接样式 */
+  nav a {
+    font-size: 1.2rem !important;   /* 字体加大 */
+    margin-right: 0 !important;     /* 清除旧的 margin */
+    margin-left: 0 !important;
+  }
+
+  /* 3.2 修正夜间模式切换按钮的位置 */
+  #theme-toggle {
+    margin-left: 0 !important;      /* 由 gap 控制间距 */
+  }
+}
