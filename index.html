@@ -5,3 +5,97 @@ layout: default
 <div class="full-width-banner">
   <img src="/assets/images/home-banner.jpg" alt="Home Banner">
 </div>
+
+<style>
+  .home-functional-area {
+    margin-top: 30px;
+    text-align: left;
+    max-width: 100%;
+  }
+  /* 第一行：最新记录样式 */
+  .latest-record {
+    font-size: 0.9em;
+    color: #444;
+    margin-bottom: 15px; /* 与下方搜索框的间距 */
+  }
+  .latest-record a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    margin-left: 5px;
+    border-bottom: 1px solid #eee;
+  }
+  /* 第二行：搜索区域样式 */
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #search-input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    padding: 4px 0;
+    outline: none;
+    width: 160px;
+    font-size: 0.85em;
+    border-radius: 0;
+  }
+  #search-button {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 2px 12px;
+    cursor: pointer;
+    font-size: 0.75em;
+    color: #666;
+    transition: all 0.2s;
+  }
+  #search-button:hover {
+    background: #f0f0f0;
+  }
+  /* 搜索结果列表样式 */
+  #results-container {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  #results-container li {
+    font-size: 0.85em;
+    margin-bottom: 8px;
+  }
+  #results-container li a {
+    text-decoration: none;
+    color: #666;
+    border-bottom: 1px dotted #ccc;
+  }
+</style>
+
+<div class="home-functional-area">
+  <div class="latest-record">
+    最新的记录：
+    {% for post in site.posts limit:1 %}
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% endfor %}
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="search-input">
+    <button id="search-button">点这里搜搜看</button>
+  </div>
+  
+  <ul id="results-container"></ul>
+</div>
+
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '{{ "/search.json" | relative_url }}',
+    searchResultTemplate: '<li><a href="{url}">> {title}</a></li>',
+    noResultsText: '<li style="color:#999">无匹配记录</li>',
+    limit: 5,
+    fuzzy: false
+  });
+</script>
