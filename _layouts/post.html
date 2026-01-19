@@ -17,48 +17,59 @@ layout: default
     编辑于 {{ page.date | date: "%Y-%m-%d" }}
   </div>
 
-<footer style="margin-top: 20px; padding-top: 20px; padding-bottom: 80px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; width: 100%; margin-left: 0 !important; margin-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important;">
-  <div style="font-size: 13px; color: #bbb; text-indent: 0 !important;">
-    {% if page.categories.size > 0 %}
-      <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb; text-decoration: none;">返回目录</a>
-    {% endif %}
-    <span style="margin: 0 10px;">|</span>
-    <a href="{{ site.baseurl }}/" style="color: #bbb; text-decoration: none;">返回主页</a>
-  </div>
-
-  <div style="font-size: 13px; color: #bbb; text-align: right;">
-    {% assign current_category = page.categories | first %}
-    {% if current_category %}
-      {% assign category_posts = site.categories[current_category] %}
-      
-      {% for post in category_posts %}
-        {% if post.url == page.url %}
-          {% assign prev_index = forloop.index0 | plus: 1 %}
-          {% assign next_index = forloop.index0 | minus: 1 %}
-          
-          {% if prev_index < category_posts.size %}
-            {% assign prev_post = category_posts[prev_index] %}
-          {% endif %}
-          
-          {% if next_index >= 0 %}
-            {% assign next_post = category_posts[next_index] %}
-          {% endif %}
-          {% break %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-
-    {% if prev_post %}
-      <a href="{{ prev_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">上一篇</a>
-    {% endif %}
-
-    {% if prev_post and next_post %}
+  <footer style="margin-top: 20px; padding-top: 20px; padding-bottom: 80px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; width: 100%; margin-left: 0 !important; margin-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important;">
+    <div style="font-size: 13px; color: #bbb; text-indent: 0 !important;">
+      {% if page.categories.size > 0 %}
+        <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb; text-decoration: none;">返回目录</a>
+      {% endif %}
       <span style="margin: 0 10px;">|</span>
-    {% endif %}
+      <a href="{{ site.baseurl }}/" style="color: #bbb; text-decoration: none;">返回主页</a>
+    </div>
 
-    {% if next_post %}
-      <a href="{{ next_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">下一篇</a>
-    {% endif %}
-  </div>
-</footer>
+    <div style="font-size: 13px; color: #bbb; text-align: right;">
+      {% comment %} 
+        1. 初始化重置变量，防止 Jekyll 静态生成时的缓存污染 
+      {% endcomment %}
+      {% assign prev_post = nil %}
+      {% assign next_post = nil %}
+      {% assign current_cat = page.categories | first %}
+
+      {% if current_cat %}
+        {% assign cat_posts = site.categories[current_cat] %}
+        
+        {% for p in cat_posts %}
+          {% if p.url == page.url %}
+            {% comment %} 
+              Jekyll 分类列表默认按日期倒序排列：
+              - 索引 + 1 为更旧的文章 (Previous)
+              - 索引 - 1 为更新的文章 (Next)
+            {% endcomment %}
+            {% assign p_idx = forloop.index0 | plus: 1 %}
+            {% assign n_idx = forloop.index0 | minus: 1 %}
+            
+            {% if p_idx < cat_posts.size %}
+              {% assign prev_post = cat_posts[p_idx] %}
+            {% endif %}
+            
+            {% if n_idx >= 0 %}
+              {% assign next_post = cat_posts[n_idx] %}
+            {% endif %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if prev_post %}
+        <a href="{{ prev_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">上一篇</a>
+      {% endif %}
+
+      {% if prev_post and next_post %}
+        <span style="margin: 0 10px;">|</span>
+      {% endif %}
+
+      {% if next_post %}
+        <a href="{{ next_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">下一篇</a>
+      {% endif %}
+    </div>
+  </footer>
 </article>
