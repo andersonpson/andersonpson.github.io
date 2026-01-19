@@ -4,6 +4,7 @@ title: "如果我们的爱的确难以避开克制的话题"
 date: 2026-01-19
 categories: [balloon]
 ---
+
 <div style="text-indent: 0 !important;">
 	
 冬季漫长的雨季来了，雨水已经连绵了一周。  
@@ -23,4 +24,5 @@ categories: [balloon]
 这会是这个冬天里最安静的景观；  
 那就允许它保持沉默吧，  
 毕竟遗憾是最无人在意的表达。  
+
 </div>
