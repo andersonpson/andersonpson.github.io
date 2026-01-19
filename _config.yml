@@ -13,7 +13,7 @@ plugins:
 # 分页插件详细配置
 pagination:
   enabled: true
-  per_page: 15              # 每页显示的文章数量
+  per_page: 10              # 每页显示的文章数量
   permalink: '/page:num/'   # 生成的 URL 格式，例如 /category/desiccant/page2/
   title_suffix: ' - 第 :num 页'
   index_page_name: 'index.html'
