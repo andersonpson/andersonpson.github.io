@@ -277,40 +277,43 @@ nav a {
 
 /* --------------------------------------
    7. 响应式适配 (Mobile Styles) - 置于文件末尾
-   【核验：放在最后可以确保其样式优先级高于上述所有全局定义】
+   【核验：确保优先级高于全局定义，且恢复居左布局】
    -------------------------------------- */
 @media (max-width: 600px) {
   
-  /* 布局微调 */
+  /* 1. 顶部页眉布局：修正为垂直堆叠并居左 */
   header.masthead {
     padding-top: 30px;
     padding-bottom: 10px;
     flex-direction: column !important; 
-    align-items: center !important;
-    text-align: center !important;
+    align-items: flex-start !important; /* 核心：子元素水平居左 */
+    text-align: left !important;        /* 核心：文字内容居左 */
   }
   
-  /* 梯度 1：网站大标题 20px */
-  .site-name, header h1.site-name a { 
+  /* 2. 【梯度 1】网站大标题 20px - 居左 */
+  .site-name, 
+  header h1.site-name a { 
     font-size: 20px !important; 
     display: block; 
     margin-bottom: 5px; 
     font-weight: bold;
+    text-align: left !important;
   }
 
-  /* 介绍文字 13px */
+  /* 3. 站点介绍文字 13px - 居左 */
   .site-description {
     font-size: 13px !important;
     margin-top: 5px;
     margin-bottom: 15px;
+    text-align: left !important;
   }
 
-  /* 导航栏适配 */
+  /* 4. 导航栏适配：左对齐横向滑动 */
   nav {
     margin-top: 10px; 
     width: 100%; 
     display: flex; 
-    justify-content: center; 
+    justify-content: flex-start;        /* 链接从左侧开始 */
     overflow-x: auto; 
     -webkit-overflow-scrolling: touch; 
     padding-bottom: 5px;
@@ -318,13 +321,13 @@ nav a {
   }
   
   nav a { 
-    margin: 0 8px;
+    margin: 0 12px 0 0;                 /* 使用右边距产生间距 */
     font-size: 14px !important;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
-  /* 容器 96% 宽度 */
+  /* 5. 内容容器适配 (96% 宽度) */
   .page, .post, .page-content, .posts, .about-container {
     padding: 15px 5px !important;
     margin: 10px auto !important;
@@ -333,7 +336,7 @@ nav a {
     overflow: hidden;
   }
 
-  /* 图片顶格处理 */
+  /* 6. 图片顶格处理 (负边距) */
   .inner-post-content figure {
     width: auto !important;
     margin-left: -5px !important; 
@@ -346,29 +349,38 @@ nav a {
     max-width: none !important;
   }
 
-  /* 梯度 2：分类小标题 17px */
-  .page-heading, .post-list-heading, h2.post-list-heading {
+  /* 7. 【梯度 2】分类小标题 17px */
+  .page-heading, 
+  .post-list-heading, 
+  h2.post-list-heading {
     font-size: 17px !important;
     margin-top: 25px !important;
     margin-bottom: 12px !important;
     font-weight: bold;
+    text-align: left !important;
   }
 
-  /* 梯度 3：文章标题 16px */
-  .post-title, .post-title a, .posts-list h2, .posts-list h2 a, .post h1, h1 {
+  /* 8. 【梯度 3】文章标题 16px */
+  .post-title, 
+  .post-title a, 
+  .posts-list h2, 
+  .posts-list h2 a, 
+  .post h1, 
+  h1 {
     font-size: 16px !important;
     margin-bottom: 10px !important; 
     line-height: 1.4 !important;
     font-weight: bold;
+    text-align: left !important;
   }
 
-  /* 辅助文本 11px */
+  /* 9. 辅助文本 11px */
   .posts-list span, .post-date-bottom, .post-date, .post-meta {
     font-size: 11px !important;
     color: var(--meta-color) !important;
   }
 
-  /* 正文字体与排版 */
+  /* 10. 正文字体与排版 */
   body { font-size: 15px; }
   p, .post-content, .inner-post-content p { 
     font-size: 15px !important;
@@ -376,21 +388,22 @@ nav a {
   }
   .inner-post-content p { text-indent: 2em !important; }
 
-  /* 功能按钮与 Banner */
+  /* 11. 功能按钮与 Banner */
   .home-banner { padding: 0 15px; }
   #theme-toggle {
-    margin-left: 15px !important;
-    padding: 10px;
-    margin-right: -10px;
+    margin-top: 10px;
+    margin-left: 0 !important;          /* 居左对齐时重置左边距 */
+    padding: 5px 0;
     flex-shrink: 0;
   }
 
-  /* 核心核验：手机端版权 10px */
-  /* 由于此段位于文件最末尾，它将无视上方第 10 点的 12px 设定，强制生效 10px */
+  /* 12. 核心核验：手机端版权 8px */
+  /* 置于末尾确保覆盖全局样式 */
   .copyright {
     font-size: 8px !important; 
     margin-top: 15px !important; 
     line-height: 1.4;
     opacity: 0.7; 
+    text-align: center !important; 
   }
 }
