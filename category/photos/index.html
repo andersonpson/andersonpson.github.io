@@ -3,7 +3,7 @@ layout: default
 title: "照片"
 pagination: 
   enabled: true
-  category: photos
+  category: photo
 ---
 
 <div class="about-container">
@@ -62,7 +62,7 @@ pagination:
       if (e.key === 'Enter') {
         const targetPage = parseInt(this.value);
         const totalPages = parseInt("{{ paginator.total_pages }}");
-        const categoryPath = "{{ site.baseurl }}/category/desiccant/";
+        const categoryPath = "{{ site.baseurl }}/category/photo/";
 
         // 严格判断：仅在有效页码范围内跳转，否则不执行 window.location.href
         if (targetPage >= 1 && targetPage <= totalPages) {
