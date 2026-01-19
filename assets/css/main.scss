@@ -16,16 +16,16 @@
   --header-title: #000;             /* 网站标题颜色 */
 }
 
-/* 深色模式变量：基于 [data-theme="dark"] 属性切换 */
+/* 深色模式变量：高对比度修正版 */
 [data-theme="dark"] {
-  --bg-color: #1a1c22;              /* 深灰微蓝调背景 */
-  --text-color: #d1d1d1;            /* 浅灰文字，避免纯白刺眼 */
-  --link-color: #a0a0a0;            /* 深色模式链接颜色 */
-  --link-hover: #e67e22;            /* 深色模式悬停颜色 */
-  --glass-bg: rgba(35, 39, 47, 0.7);  /* 深色磨砂：增加厚重感 */
-  --glass-border: rgba(255, 255, 255, 0.08); /* 减弱深色边缘线 */
-  --meta-color: #666;               /* 深色模式元数据颜色 */
-  --header-title: #ececec;          /* 深色模式标题颜色 */
+  --bg-color: #1a1c22;              
+  --text-color: #f0f0f0;            /* 正文改为近乎纯白，解决关于我内容太灰 */
+  --link-color: #dcdcdc;            /* 链接颜色提亮 */
+  --link-hover: #ffad5c;            /* 悬停高亮色 */
+  --glass-bg: rgba(30, 34, 40, 0.8); 
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --meta-color: #bbbbbb;            /* 元数据由深灰改为亮灰，解决菜单和日期太灰 */
+  --header-title: #ffffff;          /* 标题改为纯白，解决照片标题太灰 */
 }
 
 /* --------------------------------------
@@ -273,3 +273,36 @@ nav a {
 }
 .full-width-banner { width: 100% !important; margin: 0 !important; padding: 0 !important; line-height: 0; }
 .full-width-banner img { width: 100% !important; height: auto !important; display: block; border-radius: 0 !important; }
+
+/* --------------------------------------
+  10. 深色模式强制覆盖补丁 (Dark Mode Overrides)
+   -------------------------------------- */
+
+/* 1. 强制修复“最新记录”及文章标题的黑色/灰色问题 */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4,
+[data-theme="dark"] .post-title,
+[data-theme="dark"] .posts-list h2 a {
+  color: var(--header-title) !important; /* 强制变为纯白 */
+}
+
+/* 2. 修复首页列表摘要和正文的颜色 */
+[data-theme="dark"] p,
+[data-theme="dark"] .posts-list p,
+[data-theme="dark"] .entry-content,
+[data-theme="dark"] .post-content {
+  color: var(--text-color) !important; /* 强制变为亮灰 */
+}
+
+/* 3. 强制修复导航菜单颜色 */
+[data-theme="dark"] nav a {
+  color: var(--meta-color) !important;
+}
+
+/* 4. 强制修复“关于我”页面的特定容器 */
+[data-theme="dark"] .about-container, 
+[data-theme="dark"] .page-content {
+  color: var(--text-color);
+}
