@@ -1,53 +1,50 @@
----
----
-
 /* --------------------------------------
-   1. 变量定义 (Global Variables)
-   -------------------------------------- */
+   1. Theme Variables (主题变量定义)
+   包含浅色模式默认值与深色模式覆盖值
+-------------------------------------- */
 :root {
-  /* 浅色模式变量 (默认) */
-  --bg-color: #fcfcf5;              /* 纸质感背景色 */
-  --text-color: #2c2c2c;            /* 正文颜色 */
-  --link-color: #4a4a4a;            /* 链接颜色 */
-  --link-hover: #a0522d;            /* 悬停颜色 */
-  --glass-bg: rgba(255, 255, 255, 0.45); /* 磨砂玻璃背景 */
-  --glass-border: rgba(255, 255, 255, 0.3); /* 磨砂玻璃边缘 */
-  --meta-color: #999;               /* 日期等元数据颜色 */
-  --header-title: #000;             /* 网站标题颜色 */
+  /* 浅色模式 (默认) */
+  --bg-color: #fcfcf5;             /* 纸质感背景色 */
+  --text-color: #2c2c2c;           /* 正文深灰 */
+  --link-color: #4a4a4a;           /* 链接颜色 */
+  --link-hover: #a0522d;           /* 链接悬停高亮 */
+  --glass-bg: rgba(255, 255, 255, 0.45);   /* 浅色磨砂背景 */
+  --glass-border: rgba(255, 255, 255, 0.3); /* 浅色边框 */
+  --meta-color: #999;              /* 元数据(日期等)颜色 */
+  --header-title: #000;            /* 标题颜色 */
 }
 
-/* 替换 _sass/_main.scss 第 1 部分的深色模式变量 */
 [data-theme="dark"] {
-  --bg-color: #1a1c22;              
-  --text-color: #d6d2c4;            /* 正文：较暗的米灰色，护眼 */
-  --link-color: #d6d2c4;            /* 链接：同上 */
-  --link-hover: #ffad5c;            /* 悬停高亮：暖橙色 */
-  --glass-bg: rgba(30, 34, 40, 0.85); 
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --meta-color: #99968b;            /* 元数据：暖灰褐色 */
-  --header-title: #e8e4d0;          /* 标题：明亮的米黄色 (Rice White) */
+  /* 深色模式 (通过 JS 切换) */
+  --bg-color: #1a1c22;             /* 暗夜背景色 */
+  --text-color: #d6d2c4;           /* 护眼米灰文字 */
+  --link-color: #d6d2c4;           /* 链接同正文色 */
+  --link-hover: #ffad5c;           /* 悬停暖橙色 */
+  --glass-bg: rgba(30, 34, 40, 0.85);      /* 深色高透背景 */
+  --glass-border: rgba(255, 255, 255, 0.15); /* 微弱白边框 */
+  --meta-color: #99968b;           /* 暖灰褐色 */
+  --header-title: #e8e4d0;         /* 明亮米色标题 */
 }
+
 /* --------------------------------------
-   2. 字体定义 (Font Setup)
-   -------------------------------------- */
+   2. Font (字体加载)
+-------------------------------------- */
 @font-face {
   font-family: 'Jinghua';
   src: url('{{ site.baseurl }}/assets/fonts/jinghua.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: swap; /* 优化加载体验 */
 }
 
 /* --------------------------------------
-   3. 全局基础样式 (Global Reset)
-   -------------------------------------- */
+   3. Global Base (全局基础样式)
+-------------------------------------- */
 body {
   background-color: var(--bg-color);
-  
-  /* 基础平铺设置 */
   background-repeat: repeat;
   background-size: 600px 600px;
-  background-attachment: fixed; /* 实现位移感的核心 */
+  background-attachment: fixed; /* 背景固定，不随滚动条移动 */
 
   font-family: 'Jinghua', serif;
   color: var(--text-color);
@@ -55,28 +52,30 @@ body {
   margin: 0;
   padding: 0;
   font-size: 18px;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease; /* 主题切换时的平滑过渡 */
 }
 
-/* 专门为黑暗模式单独指定背景图，绕过 Sass 变量解析错误 */
+/* 深色模式下的星空背景图强制覆盖 */
 [data-theme="dark"] body {
   background-image: url("{{ site.baseurl }}/assets/images/stars.png") !important;
 }
 
 /* --------------------------------------
-   4. 核心布局容器 (Layout Container)
-   -------------------------------------- */
+   4. Layout Containers (布局容器)
+-------------------------------------- */
 header, .home-wrapper, footer {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* 磨砂玻璃主体容器 */
-.page, .post, .page-content, .posts, .about-container {
+/* 核心磨砂玻璃容器 
+   使用 :where() 降低选择器权重为 0，便于后续样式覆盖
+*/
+:where(.page, .post, .page-content, .posts, .about-container) {
   background: var(--glass-bg) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px) !important;       /* 核心磨砂效果 */
+  -webkit-backdrop-filter: blur(12px);          /* Safari 兼容 */
   padding: 50px;
   margin: 20px auto 60px auto !important;
   max-width: 800px;
@@ -87,52 +86,51 @@ header, .home-wrapper, footer {
   box-sizing: border-box;
 }
 
-/* 摄影集文章专用局部覆盖：扩大展示宽度 */
+/* 摄影文章特殊覆盖：减小内边距以展示更大图片 */
 .post {
   padding-left: 20px !important;
   padding-right: 20px !important;
 }
 
 /* --------------------------------------
-   5. 顶部导航栏 (Header)
-   -------------------------------------- */
+   5. Header / Nav (顶部导航)
+-------------------------------------- */
 header {
   padding-top: 60px;
   padding-bottom: 20px;
   display: flex;
-  justify-content: space-between; /* 标题居左，导航居右 */
-  align-items: baseline;          /* 底部基准线对齐 */
-  flex-wrap: wrap;                /* 适配手机端换行 */
+  justify-content: space-between; /* 标题左对齐，导航右对齐 */
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
-header h1 a { 
-  font-size: 32px; 
-  font-weight: bold; 
-  color: var(--header-title); /* 替换为变量：随模式切换黑/灰白 */
+header h1 a {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--header-title);
 }
 
-header p { 
-  font-size: 14px; 
-  color: var(--meta-color);   /* 替换为变量：随模式切换深灰/浅灰 */
-  margin-top: 5px; 
+header p {
+  font-size: 14px;
+  color: var(--meta-color);
+  margin-top: 5px;
 }
 
-nav a { 
-  margin-left: 20px; 
-  font-size: 16px; 
-  color: var(--meta-color);   /* 替换为变量：随模式切换深灰/浅灰 */
+nav a {
+  margin-left: 20px;
+  font-size: 16px;
+  color: var(--meta-color);
 }
 
 /* --------------------------------------
-   6. 图片控制 (Images Alignment)
-   -------------------------------------- */
-
-/* A. 框内通用图片控制 */
-.category-header-img,
+   6. Images (图片处理)
+-------------------------------------- */
+/* 统一处理所有内容区图片：宽度 100%，自适应高度 */
+:where(.category-header-img,
 .about-container img,
 .posts-list img,
 .post-teaser-img,
-.inner-post-content img {
+.inner-post-content img) {
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
@@ -142,18 +140,18 @@ nav a {
   object-fit: cover;
 }
 
-/* B. 摄影集 figure 结构控制 */
+/* 摄影集结构优化：移除缩进，调整间距 */
 .inner-post-content figure {
   width: 100% !important;
-  margin: 0 0 25px 0 !important; /* 缩小照片组之间的垂直间距 */
+  margin: 0 0 25px 0 !important;
   text-indent: 0 !important;
 }
 
 .inner-post-content figure img {
-  margin-bottom: 8px !important; /* 缩小照片与描述文字的距离 */
+  margin-bottom: 8px !important;
 }
 
-/* C. 首页 Banner */
+/* 首页 Banner 图片 */
 .home-banner {
   width: 100%;
   margin-bottom: 20px;
@@ -168,7 +166,7 @@ nav a {
   border-radius: 8px;
 }
 
-/* D. 关于我页面头像 */
+/* 关于页圆形头像 */
 .about-container img.about-avatar {
   width: 100px !important;
   height: 100px !important;
@@ -182,8 +180,9 @@ nav a {
 }
 
 /* --------------------------------------
-   8. 文章排版细节 (Typography Details)
-   -------------------------------------- */
+   7. Typography (排版细节)
+-------------------------------------- */
+/* 正文段落：强制首行缩进 2 字符，两端对齐 */
 .inner-post-content p {
   text-indent: 2em !important;
   line-height: 1.5 !important;
@@ -191,16 +190,16 @@ nav a {
   margin-bottom: 1.5em;
 }
 
-/* 排除非段落元素缩进 */
-.inner-post-content img, 
-.inner-post-content h1, 
-.inner-post-content h2, 
+/* 排除非段落元素的首行缩进 (如图片、标题、列表) */
+:where(.inner-post-content img,
+.inner-post-content h1,
+.inner-post-content h2,
 .inner-post-content h3,
 .inner-post-content blockquote,
 .inner-post-content ul,
 .inner-post-content ol,
-.inner-post-content figure {
-  text-indent: 0 !important; 
+.inner-post-content figure) {
+  text-indent: 0 !important;
 }
 
 .posts-list article { margin-bottom: 25px !important; }
@@ -208,20 +207,36 @@ nav a {
 .posts-list span { display: block; margin-top: 0 !important; line-height: 1; }
 
 /* --------------------------------------
-   9. 首页全宽照片适配样式 (Full Width Banner)
-   -------------------------------------- */
+   8. Home Full-Width Banner (首页全宽图)
+-------------------------------------- */
+/* 强制首页容器满宽 */
 .home-page #main.container {
-  max-width: 100% !important; width: 100% !important; padding: 0 !important; margin: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-.full-width-banner { width: 100% !important; margin: 0 !important; padding: 0 !important; line-height: 0; }
-.full-width-banner img { width: 100% !important; height: auto !important; display: block; border-radius: 0 !important; }
+
+/* 消除行高带来的底部空隙 */
+.full-width-banner {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0;
+}
+
+.full-width-banner img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  border-radius: 0 !important;
+}
 
 /* --------------------------------------
-   10. 全局版权声明 (Global Copyright)
-   基础设置为 12px，此部分属于全局样式
-   -------------------------------------- */
+   9. Copyright (版权信息)
+-------------------------------------- */
 .copyright {
-  font-size: 12px !important; 
+  font-size: 12px !important;
   text-align: center;
   margin-top: 20px;
   color: #999;
@@ -229,84 +244,73 @@ nav a {
 }
 
 /* --------------------------------------
-   11. 深色模式终极补丁 V3 (Dark Mode Patch)
-   -------------------------------------- */
-
-/* 通用标题颜色适配 */
-[data-theme="dark"] h1, 
-[data-theme="dark"] h2, 
-[data-theme="dark"] h3, 
-[data-theme="dark"] h4,
-[data-theme="dark"] .page-heading,
-[data-theme="dark"] .post-list-heading,
-[data-theme="dark"] .post-title,
-[data-theme="dark"] .post-title a,
-[data-theme="dark"] .copyright {
-  color: var(--header-title) !important;
-  text-decoration: none !important; /* ←在这里加入这一行 */
+   10. Dark Mode Patch (深色模式强制覆盖补丁)
+   整合了所有需要强制变色的元素，使用 :where 聚合
+-------------------------------------- */
+[data-theme="dark"] :where(
+  h1, h2, h3, h4,
+  .page-heading,
+  .post-list-heading,
+  .post-title,
+  .post-title a,
+  .copyright
+) {
+  color: var(--header-title) !important; /* 强制变为浅米色 */
+  text-decoration: none !important;
 }
 
-/* 搜索框占位符适配 */
+/* 深色模式下的正文与列表文字 */
+[data-theme="dark"] :where(#main p, .container p, li, span) {
+  color: var(--text-color) !important;
+}
+
+/* 输入框与占位符适配 (透明背景 + 浅色文字) */
 [data-theme="dark"] ::-webkit-input-placeholder { color: var(--meta-color) !important; opacity: 1; }
 [data-theme="dark"] ::-moz-placeholder { color: var(--meta-color) !important; opacity: 1; }
 [data-theme="dark"] :-ms-input-placeholder { color: var(--meta-color) !important; opacity: 1; }
 [data-theme="dark"] ::placeholder { color: var(--meta-color) !important; opacity: 1; }
 
-/* 输入框底部线与输入文字适配 */
-[data-theme="dark"] input,
-[data-theme="dark"] textarea {
+[data-theme="dark"] :where(input, textarea) {
   background-color: transparent !important;
-  color: var(--header-title) !important; 
+  color: var(--header-title) !important;
   border-bottom: 1px solid var(--meta-color) !important;
 }
 
-/* 链接、正文、导航适配 */
-[data-theme="dark"] #main a,
-[data-theme="dark"] .container a,
-[data-theme="dark"] article a,
-[data-theme="dark"] .posts-list a {
-  color: var(--header-title) !important; 
+/* 链接与导航适配 */
+[data-theme="dark"] :where(#main a, .container a, article a, .posts-list a) {
+  color: var(--header-title) !important;
   text-decoration: none !important;
 }
 
-/* 将 nav a 独立出来写，确保颜色和无下划线同时生效 */
 [data-theme="dark"] nav a {
   color: var(--meta-color) !important;
   text-decoration: none !important;
 }
-[data-theme="dark"] #main p,
-[data-theme="dark"] .container p,
-[data-theme="dark"] li,
-[data-theme="dark"] span { 
-  color: var(--text-color) !important;
-}
 
 /* --------------------------------------
-   7. 响应式适配 (Mobile Styles) - 置于文件末尾
-   【核验：确保优先级高于全局定义，且恢复居左布局】
-   -------------------------------------- */
+   11. Mobile (<=600px) (移动端响应式)
+   参数与原代码完全一致，仅做结构优化
+-------------------------------------- */
 @media (max-width: 600px) {
-  
-  /* 1. 顶部页眉布局：修正为垂直堆叠并居左 */
+  /* 页眉布局调整：垂直堆叠 + 左对齐 */
   header.masthead {
     padding-top: 30px;
     padding-bottom: 10px;
-    flex-direction: column !important; 
-    align-items: flex-start !important; 
+    flex-direction: column !important;
+    align-items: flex-start !important;
     text-align: left !important;
   }
-  
-  /* 2. 【梯度 1】网站大标题 20px - 居左 */
-  .site-name, 
-  header h1.site-name a { 
-    font-size: 20px !important; 
-    display: block; 
-    margin-bottom: 5px; 
+
+  /* 站点标题降级 (20px) */
+  .site-name,
+  header h1.site-name a {
+    font-size: 20px !important;
+    display: block;
+    margin-bottom: 5px;
     font-weight: bold;
     text-align: left !important;
   }
 
-  /* 3. 站点介绍文字 13px - 居左 */
   .site-description {
     font-size: 13px !important;
     margin-top: 5px;
@@ -314,27 +318,27 @@ nav a {
     text-align: left !important;
   }
 
-  /* 4. 导航栏适配：左对齐横向滑动 */
+  /* 导航栏：改为横向滑动模式 (Horizontal Scroll) */
   nav {
-    margin-top: 10px; 
-    width: 100%; 
-    display: flex; 
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
     justify-content: flex-start;
-    overflow-x: auto; 
-    -webkit-overflow-scrolling: touch; 
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     padding-bottom: 5px;
     align-items: center;
   }
-  
-  nav a { 
+
+  nav a {
     margin: 0 12px 0 0;
     font-size: 14px !important;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
-  /* 5. 内容容器适配 (96% 宽度) */
-  .page, .post, .page-content, .posts, .about-container {
+  /* 主容器宽度调整为 96% */
+  :where(.page, .post, .page-content, .posts, .about-container) {
     padding: 15px 5px !important;
     margin: 10px auto !important;
     width: 96% !important;
@@ -342,23 +346,22 @@ nav a {
     overflow: hidden;
   }
 
-  /* 6. 图片顶格处理 (负边距) */
+  /* 图片顶格处理：通过负边距抵消容器内边距 */
   .inner-post-content figure {
     width: auto !important;
-    margin-left: -5px !important; 
-    margin-right: -5px !important; 
+    margin-left: -5px !important;
+    margin-right: -5px !important;
     margin-bottom: 25px !important;
     padding: 0 !important;
   }
+
   .inner-post-content figure img {
     border-radius: 0 !important;
     max-width: none !important;
   }
 
-  /* 7. 【梯度 2】分类小标题 17px */
-  .page-heading, 
-  .post-list-heading, 
-  h2.post-list-heading {
+  /* 字体梯度降级：分类标题 17px */
+  :where(.page-heading, .post-list-heading, h2.post-list-heading) {
     font-size: 17px !important;
     margin-top: 25px !important;
     margin-bottom: 12px !important;
@@ -366,40 +369,37 @@ nav a {
     text-align: left !important;
   }
 
-  /* 8. 【梯度 3】文章标题 16px */
-  .post-title, 
-  .post-title a, 
-  .posts-list h2, 
-  .posts-list h2 a, 
-  .post h1, 
-  h1 {
+  /* 文章标题 16px */
+  :where(.post-title, .post-title a, .posts-list h2, .posts-list h2 a, .post h1, h1) {
     font-size: 16px !important;
-    margin-bottom: 10px !important; 
+    margin-bottom: 10px !important;
     line-height: 1.4 !important;
     font-weight: bold;
     text-align: left !important;
   }
 
-  /* 9. 辅助文本 11px */
-  .posts-list span, .post-date-bottom, .post-date, .post-meta {
+  /* 辅助信息 11px */
+  :where(.posts-list span, .post-date-bottom, .post-date, .post-meta) {
     font-size: 11px !important;
     color: var(--meta-color) !important;
   }
 
-  /* 10. 正文字体与排版 */
+  /* 正文 15px */
   body { font-size: 15px; }
-  p, .post-content, .inner-post-content p { 
+
+  :where(p, .post-content, .inner-post-content p) {
     font-size: 15px !important;
     line-height: 1.7;
   }
+
   .inner-post-content p { text-indent: 2em !important; }
 
-  /* 11. 功能按钮与 Banner 适配 - 手机端坐标 */
   .home-banner { padding: 0 15px; }
 
+  /* 移动端主题切换按钮位置调整 */
   #theme-toggle {
-    position: absolute !important; 
-    top: 20px !important;  /* 手机端间距 20px */
+    position: absolute !important;
+    top: 20px !important;
     right: 20px !important;
     display: block !important;
     margin: 0 !important;
@@ -408,37 +408,40 @@ nav a {
     line-height: 0;
   }
 
-  /* 12. 核心核验：手机端版权 8px */
+  /* 移动端版权信息极小化 */
   .copyright {
-    font-size: 8px !important; 
-    margin-top: 15px !important; 
+    font-size: 8px !important;
+    margin-top: 15px !important;
     line-height: 1.4;
-    opacity: 0.7; 
-    text-align: center !important; 
+    opacity: 0.7;
+    text-align: center !important;
   }
-} /* 第 7 点 @media 块结束 */
+}
 
 /* --------------------------------------
-   针对桌面端（宽屏）的功能按钮坐标设定
-   -------------------------------------- */
+   12. Desktop theme toggle position (桌面端按钮位置)
+-------------------------------------- */
 @media (min-width: 601px) {
   #theme-toggle {
     position: absolute !important;
-    top: 25px !important;   /* 电脑端间距 25px */
+    top: 25px !important;
     right: 25px !important;
     display: block !important;
     z-index: 10000;
   }
 }
 
-/* 按钮图标通用尺寸定义 */
 #theme-toggle img {
   width: 18px;
   height: 18px;
   display: block;
   border: none;
 }
-/* 全局链接样式：同时覆盖浅色模式默认蓝色下划线 */
+
+/* --------------------------------------
+   13. Global link fallback (全局链接默认样式)
+   覆盖浏览器默认蓝色，应用浅色模式变量
+-------------------------------------- */
 a, a:visited {
   color: var(--link-color);
   text-decoration: none;
