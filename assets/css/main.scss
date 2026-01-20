@@ -1,0 +1,453 @@
+/* --------------------------------------
+   1. Theme Variables (主题变量定义)
+   包含浅色模式默认值与深色模式覆盖值
+-------------------------------------- */
+:root {
+  /* 浅色模式 (默认) */
+  --bg-color: #fcfcf5;             /* 纸质感背景色 */
+  --text-color: #2c2c2c;           /* 正文深灰 */
+  --link-color: #4a4a4a;           /* 链接颜色 */
+  --link-hover: #a0522d;           /* 链接悬停高亮 */
+  --glass-bg: rgba(255, 255, 255, 0.45);   /* 浅色磨砂背景 */
+  --glass-border: rgba(255, 255, 255, 0.3); /* 浅色边框 */
+  --meta-color: #999;              /* 元数据(日期等)颜色 */
+  --header-title: #000;            /* 标题颜色 */
+}
+
+[data-theme="dark"] {
+  /* 深色模式 (通过 JS 切换) */
+  --bg-color: #1a1c22;             /* 暗夜背景色 */
+  --text-color: #d6d2c4;           /* 护眼米灰文字 */
+  --link-color: #d6d2c4;           /* 链接同正文色 */
+  --link-hover: #ffad5c;           /* 悬停暖橙色 */
+  --glass-bg: rgba(30, 34, 40, 0.85);      /* 深色高透背景 */
+  --glass-border: rgba(255, 255, 255, 0.15); /* 微弱白边框 */
+  --meta-color: #99968b;           /* 暖灰褐色 */
+  --header-title: #e8e4d0;         /* 明亮米色标题 */
+}
+
+/* --------------------------------------
+   2. Font (字体加载)
+-------------------------------------- */
+@font-face {
+  font-family: 'Jinghua';
+  src: url('{{ site.baseurl }}/assets/fonts/jinghua.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 优化加载体验 */
+}
+
+/* --------------------------------------
+   3. Global Base (全局基础样式)
+-------------------------------------- */
+body {
+  background-color: var(--bg-color);
+  background-repeat: repeat;
+  background-size: 600px 600px;
+  background-attachment: fixed; /* 背景固定，不随滚动条移动 */
+
+  font-family: 'Jinghua', serif;
+  color: var(--text-color);
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  transition: background-color 0.3s ease; /* 主题切换时的平滑过渡 */
+}
+
+/* 深色模式下的星空背景图强制覆盖 */
+[data-theme="dark"] body {
+  background-image: url("{{ site.baseurl }}/assets/images/stars.png") !important;
+}
+
+/* --------------------------------------
+   4. Layout Containers (布局容器)
+-------------------------------------- */
+header, .home-wrapper, footer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 核心磨砂玻璃容器 
+   使用 :where() 降低选择器权重为 0，便于后续样式覆盖
+*/
+:where(.page, .post, .page-content, .posts, .about-container) {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) !important;       /* 核心磨砂效果 */
+  -webkit-backdrop-filter: blur(12px);          /* Safari 兼容 */
+  padding: 50px;
+  margin: 20px auto 60px auto !important;
+  max-width: 800px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* 摄影文章特殊覆盖：减小内边距以展示更大图片 */
+.post {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* --------------------------------------
+   5. Header / Nav (顶部导航)
+-------------------------------------- */
+header {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between; /* 标题左对齐，导航右对齐 */
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+header h1 a {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--header-title);
+}
+
+header p {
+  font-size: 14px;
+  color: var(--meta-color);
+  margin-top: 5px;
+}
+
+nav a {
+  margin-left: 20px;
+  font-size: 16px;
+  color: var(--meta-color);
+}
+
+/* --------------------------------------
+   6. Images (图片处理)
+-------------------------------------- */
+/* 统一处理所有内容区图片：宽度 100%，自适应高度 */
+:where(.category-header-img,
+.about-container img,
+.posts-list img,
+.post-teaser-img,
+.inner-post-content img) {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* 摄影集结构优化：移除缩进，调整间距 */
+.inner-post-content figure {
+  width: 100% !important;
+  margin: 0 0 25px 0 !important;
+  text-indent: 0 !important;
+}
+
+.inner-post-content figure img {
+  margin-bottom: 8px !important;
+}
+
+/* 首页 Banner 图片 */
+.home-banner {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.home-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* 关于页圆形头像 */
+.about-container img.about-avatar {
+  width: 100px !important;
+  height: 100px !important;
+  max-width: 100px !important;
+  border-radius: 50% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: 30px !important;
+  object-fit: cover;
+  display: block;
+}
+
+/* --------------------------------------
+   7. Typography (排版细节)
+-------------------------------------- */
+/* 正文段落：强制首行缩进 2 字符，两端对齐 */
+.inner-post-content p {
+  text-indent: 2em !important;
+  line-height: 1.5 !important;
+  text-align: justify;
+  margin-bottom: 1.5em;
+}
+
+/* 排除非段落元素的首行缩进 (如图片、标题、列表) */
+:where(.inner-post-content img,
+.inner-post-content h1,
+.inner-post-content h2,
+.inner-post-content h3,
+.inner-post-content blockquote,
+.inner-post-content ul,
+.inner-post-content ol,
+.inner-post-content figure) {
+  text-indent: 0 !important;
+}
+
+.posts-list article { margin-bottom: 25px !important; }
+.posts-list h2 { margin-bottom: 2px !important; }
+.posts-list span { display: block; margin-top: 0 !important; line-height: 1; }
+
+/* --------------------------------------
+   8. Home Full-Width Banner (首页全宽图)
+-------------------------------------- */
+/* 强制首页容器满宽 */
+.home-page #main.container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 消除行高带来的底部空隙 */
+.full-width-banner {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0;
+}
+
+.full-width-banner img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  border-radius: 0 !important;
+}
+
+/* --------------------------------------
+   9. Copyright (版权信息)
+-------------------------------------- */
+.copyright {
+  font-size: 12px !important;
+  text-align: center;
+  margin-top: 20px;
+  color: #999;
+  opacity: 0.8;
+}
+
+/* --------------------------------------
+   10. Dark Mode Patch (深色模式强制覆盖补丁)
+   整合了所有需要强制变色的元素，使用 :where 聚合
+-------------------------------------- */
+[data-theme="dark"] :where(
+  h1, h2, h3, h4,
+  .page-heading,
+  .post-list-heading,
+  .post-title,
+  .post-title a,
+  .copyright
+) {
+  color: var(--header-title) !important; /* 强制变为浅米色 */
+  text-decoration: none !important;
+}
+
+/* 深色模式下的正文与列表文字 */
+[data-theme="dark"] :where(#main p, .container p, li, span) {
+  color: var(--text-color) !important;
+}
+
+/* 输入框与占位符适配 (透明背景 + 浅色文字) */
+[data-theme="dark"] ::-webkit-input-placeholder { color: var(--meta-color) !important; opacity: 1; }
+[data-theme="dark"] ::-moz-placeholder { color: var(--meta-color) !important; opacity: 1; }
+[data-theme="dark"] :-ms-input-placeholder { color: var(--meta-color) !important; opacity: 1; }
+[data-theme="dark"] ::placeholder { color: var(--meta-color) !important; opacity: 1; }
+
+[data-theme="dark"] :where(input, textarea) {
+  background-color: transparent !important;
+  color: var(--header-title) !important;
+  border-bottom: 1px solid var(--meta-color) !important;
+}
+
+/* 链接与导航适配 */
+[data-theme="dark"] :where(#main a, .container a, article a, .posts-list a) {
+  color: var(--header-title) !important;
+  text-decoration: none !important;
+}
+
+[data-theme="dark"] nav a {
+  color: var(--meta-color) !important;
+  text-decoration: none !important;
+}
+
+/* --------------------------------------
+   11. Mobile (<=600px) (移动端响应式)
+   参数与原代码完全一致，仅做结构优化
+-------------------------------------- */
+@media (max-width: 600px) {
+  /* 页眉布局调整：垂直堆叠 + 左对齐 */
+  header.masthead {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  /* 站点标题降级 (20px) */
+  .site-name,
+  header h1.site-name a {
+    font-size: 20px !important;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left !important;
+  }
+
+  .site-description {
+    font-size: 13px !important;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    text-align: left !important;
+  }
+
+  /* 导航栏：改为横向滑动模式 (Horizontal Scroll) */
+  nav {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
+    align-items: center;
+  }
+
+  nav a {
+    margin: 0 12px 0 0;
+    font-size: 14px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* 主容器宽度调整为 96% */
+  :where(.page, .post, .page-content, .posts, .about-container) {
+    padding: 15px 5px !important;
+    margin: 10px auto !important;
+    width: 96% !important;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* 图片顶格处理：通过负边距抵消容器内边距 */
+  .inner-post-content figure {
+    width: auto !important;
+    margin-left: -5px !important;
+    margin-right: -5px !important;
+    margin-bottom: 25px !important;
+    padding: 0 !important;
+  }
+
+  .inner-post-content figure img {
+    border-radius: 0 !important;
+    max-width: none !important;
+  }
+
+  /* 字体梯度降级：分类标题 17px */
+  :where(.page-heading, .post-list-heading, h2.post-list-heading) {
+    font-size: 17px !important;
+    margin-top: 25px !important;
+    margin-bottom: 12px !important;
+    font-weight: bold;
+    text-align: left !important;
+  }
+
+  /* 文章标题 16px */
+  :where(.post-title, .post-title a, .posts-list h2, .posts-list h2 a, .post h1, h1) {
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+    line-height: 1.4 !important;
+    font-weight: bold;
+    text-align: left !important;
+  }
+
+  /* 辅助信息 11px */
+  :where(.posts-list span, .post-date-bottom, .post-date, .post-meta) {
+    font-size: 11px !important;
+    color: var(--meta-color) !important;
+  }
+
+  /* 正文 15px */
+  body { font-size: 15px; }
+
+  :where(p, .post-content, .inner-post-content p) {
+    font-size: 15px !important;
+    line-height: 1.7;
+  }
+
+  .inner-post-content p { text-indent: 2em !important; }
+
+  .home-banner { padding: 0 15px; }
+
+  /* 移动端主题切换按钮位置调整 */
+  #theme-toggle {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    z-index: 10000;
+    line-height: 0;
+  }
+
+  /* 移动端版权信息极小化 */
+  .copyright {
+    font-size: 8px !important;
+    margin-top: 15px !important;
+    line-height: 1.4;
+    opacity: 0.7;
+    text-align: center !important;
+  }
+}
+
+/* --------------------------------------
+   12. Desktop theme toggle position (桌面端按钮位置)
+-------------------------------------- */
+@media (min-width: 601px) {
+  #theme-toggle {
+    position: absolute !important;
+    top: 25px !important;
+    right: 25px !important;
+    display: block !important;
+    z-index: 10000;
+  }
+}
+
+#theme-toggle img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  border: none;
+}
+
+/* --------------------------------------
+   13. Global link fallback (全局链接默认样式)
+   覆盖浏览器默认蓝色，应用浅色模式变量
+-------------------------------------- */
+a, a:visited {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: var(--link-hover);
+  text-decoration: none;
+}
