@@ -264,13 +264,15 @@ nav a {
 [data-theme="dark"] #main a,
 [data-theme="dark"] .container a,
 [data-theme="dark"] article a,
-[data-theme="dark"] .posts-list a,
-[data-theme="dark"] nav a {
+[data-theme="dark"] .posts-list a {
   color: var(--header-title) !important; 
-  text-decoration: none !important; /* ←在这里加入这一行 */
+  text-decoration: none !important;
 }
+
+/* 将 nav a 独立出来写，确保颜色和无下划线同时生效 */
 [data-theme="dark"] nav a {
   color: var(--meta-color) !important;
+  text-decoration: none !important;
 }
 [data-theme="dark"] #main p,
 [data-theme="dark"] .container p,
