@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <title>
+<title>
   {% if page.url == "/" or page.url == "/index.html" %}
     {{ site.name }}
   {% elsif page.url contains '/category/' %}
     {{ page.title | default: "分类" }} – {{ site.name }}
   {% elsif page.layout == "post" or page.categories.size > 0 %}
-    {{ page.title }} – {{ page.categories | first }}
+    {% assign cat_slug = page.categories | first %}
+    {% assign cat_name = cat_slug %}
+    {% if cat_slug == "balloon" %}{% assign cat_name = "气球悲歌" %}
+    {% elsif cat_slug == "desiccant" %}{% assign cat_name = "蓝色干燥剂之死" %}
+    {% elsif cat_slug == "photos" %}{% assign cat_name = "照片" %}
+    {% endif %}
+    {{ page.title }} – {{ cat_name }}
   {% else %}
-    {{ page.title }} {% endif %}
+    {{ page.title }}
+  {% endif %}
 </title>
 
     {% include meta.html %}
