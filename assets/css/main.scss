@@ -14,6 +14,7 @@
   --glass-border: rgba(255, 255, 255, 0.3); /* 磨砂玻璃边缘 */
   --meta-color: #999;               /* 日期等元数据颜色 */
   --header-title: #000;             /* 网站标题颜色 */
+  --star-bg: none;
 }
 
 /* 替换 _sass/_main.scss 第 1 部分的深色模式变量 */
@@ -26,6 +27,7 @@
   --glass-border: rgba(255, 255, 255, 0.15);
   --meta-color: #99968b;            /* 元数据：暖灰褐色 */
   --header-title: #e8e4d0;          /* 标题：明亮的米黄色 (Rice White) */
+  --star-bg: url('/assets/images/stars.png');
 }
 /* --------------------------------------
    2. 字体定义 (Font Setup)
@@ -43,22 +45,27 @@
    -------------------------------------- */
 body {
   background-color: var(--bg-color);
+  
+  /* [新增] 调用变量中的星空图 */
+  background-image: var(--star-bg);
+  
+  /* [新增] 整个背景覆盖配置 */
+  background-repeat: repeat;      /* 让星星平铺满全屏 */
+  background-size: 600px 600px;   /* 缩放比例，可根据你的图片精细度微调 */
+  
+  /* [新增] 实现滚动产生的位移感 */
+  /* fixed 使背景相对于视口固定。当你滚动文字时，背景不动，产生深邃的视差位移错觉 */
+  background-attachment: fixed;   
+
   font-family: 'Jinghua', serif;
   color: var(--text-color);
   line-height: 1.8;
   margin: 0;
   padding: 0;
   font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  color: var(--link-color);
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: var(--link-hover);
+  
+  /* 确保背景颜色切换时平滑 */
+  transition: background-color 0.3s ease; 
 }
 
 /* --------------------------------------
