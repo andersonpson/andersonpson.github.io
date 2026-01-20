@@ -333,11 +333,11 @@ nav a {
     flex-shrink: 0;
   }
 
-  /* 5. 内容容器适配 (96% 宽度) */
+  /* 5. 内容容器适配 (90% 宽度) */
   .page, .post, .page-content, .posts, .about-container {
     padding: 15px 5px !important;
     margin: 10px auto !important;
-    width: 96% !important;
+    width: 90% !important;
     box-sizing: border-box;
     overflow: hidden;
   }
