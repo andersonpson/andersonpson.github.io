@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description | strip_newlines }}</title>
+   <title>
+  {% if page.url == "/" or page.url == "/index.html" %}
+    {{ site.name }}
+  {% elsif page.url contains '/category/' %}
+    {{ page.title | default: "分类" }} – {{ site.name }}
+  {% elsif page.layout == "post" or page.categories.size > 0 %}
+    {{ page.title }} – {{ page.categories | first }}
+  {% else %}
+    {{ page.title }} {% endif %}
+</title>
 
     {% include meta.html %}
 
