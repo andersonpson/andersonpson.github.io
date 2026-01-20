@@ -243,6 +243,7 @@ nav a {
 [data-theme="dark"] .post-title a,
 [data-theme="dark"] .copyright {
   color: var(--header-title) !important;
+  text-decoration: none !important; /* ←在这里加入这一行 */
 }
 
 /* 搜索框占位符适配 */
@@ -266,6 +267,7 @@ nav a {
 [data-theme="dark"] .posts-list a,
 [data-theme="dark"] nav a {
   color: var(--header-title) !important; 
+  text-decoration: none !important; /* ←在这里加入这一行 */
 }
 [data-theme="dark"] nav a {
   color: var(--meta-color) !important;
