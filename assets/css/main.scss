@@ -438,3 +438,13 @@ nav a {
   display: block;
   border: none;
 }
+/* 全局链接样式：同时覆盖浅色模式默认蓝色下划线 */
+a, a:visited {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: var(--link-hover);
+  text-decoration: none;
+}
