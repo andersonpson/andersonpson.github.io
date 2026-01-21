@@ -59,23 +59,38 @@ layout: default
     </div>
 
     <div id="artalk-area" style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
-      
       <style>
-        /* 强制字体隔离 */
+        /* 1. 字体强制继承 */
         :root { --at-font-family: inherit !important; }
-        #Comments, #Comments *, .atk-layer, .atk-main-editor, .atk-textarea { 
-          font-family: inherit !important; 
-        }
-        
-        /* 物理移除不需要的字段（即使 JS 失效也会生效） */
-        #Comments .atk-item[data-field="mail"], 
-        #Comments .atk-item[data-field="link"],
-        #Comments .atk-item[data-field="ua"] { 
-          display: none !important; 
+        #Comments, #Comments * { font-family: inherit !important; }
+
+        /* 2. 物理隐藏邮箱、网址、表情选择器 */
+        #Comments input[type="email"],
+        #Comments input[type="url"],
+        .atk-item[data-field="mail"],
+        .atk-item[data-field="link"],
+        .atk-grp[data-grp="emoticons"] {
+          display: none !important;
         }
 
-        /* 强制修正暗黑模式输入框文字颜色（解决变黑后看不清的问题） */
-        .atk-dark-mode .atk-textarea { color: #ccc !important; }
+        /* 3. 输入框底色与文字色控制 */
+        #Comments .atk-textarea {
+          background: rgba(255,255,255,0.45) !important;
+          color: #2c2c2c !important;
+          border: 1px solid rgba(0,0,0,0.08) !important;
+          box-shadow: none !important;
+        }
+
+        /* 4. 暗黑模式兼容 */
+        .atk-dark-mode #Comments .atk-textarea {
+          background: rgba(25,25,25,0.8) !important;
+          color: #ccc !important;
+          border: 1px solid rgba(255,255,255,0.10) !important;
+        }
+        .atk-dark-mode .atk-main-editor {
+          background: #1a1a1a !important;
+          border-color: #333 !important;
+        }
       </style>
       
       <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
@@ -85,34 +100,28 @@ layout: default
       
       <script>
         (function() {
-          var initArtalk = function() {
+          function initArtalk() {
             if (typeof Artalk === 'undefined') {
               setTimeout(initArtalk, 100);
               return;
             }
+
             Artalk.init({
               el:        '#Comments',
               pageKey:   location.pathname,
               pageTitle: document.title,
               server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
               site:      '小狗帽子和永恒泡芙',
-              useBackendConf: false, // 🔴 关键：禁用后端配置覆盖前端配置
+              useBackendConf: false,
               locale:    'zh-CN',
               darkMode:  'auto',
-              fields: {
-                nick: 'required',
-                mail: 'optional',
-                link: 'hide'
-              },
-              i18n: {
-                'zh-CN': {
-                  placeholder: '假如你想同我说些什么',
-                  nick: '昵称',
-                  send: '发布'
-                }
-              }
+              placeholder: '假如你想同我说些什么',
+              sendBtn:      '发布',
+              emoticons: false,
+              imgUpload: false,
+              preview:   false
             });
-          };
+          }
           initArtalk();
         })();
       </script>
