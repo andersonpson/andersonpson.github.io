@@ -158,7 +158,6 @@
       <style>
         :root { --at-font-family: inherit !important; }
         #Comments, #Comments * { font-family: inherit !important; }
-        /* 强制隐藏邮箱输入框（第二个子元素） */
         .atk-main-editor > .atk-header > .atk-item:nth-child(2) { display: none !important; }
       </style>
       <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
@@ -171,7 +170,8 @@
           pageTitle: document.title,
           server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
           site:      '小狗帽子和永恒泡芙',
-          locale:    'zh-CN', // 强制指定中文语言包
+          locale:    'zh-CN',
+          darkMode:  'auto', // 🔴 设置为 auto 自动跟随系统黑夜模式
           fields: {
             nick: 'required',
             mail: 'optional',
