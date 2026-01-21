@@ -2,7 +2,7 @@
 layout: post
 title: "地中海指南针"
 date: 2026-01-21
-categories: [balloon]
+categories: [something]
 ---	
 我们曾在地中海度过了颇为吵闹的一天
 
