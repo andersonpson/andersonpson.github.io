@@ -24,6 +24,7 @@ sass:
 navigation:
   - { name: "气球悲歌", url: "/category/balloon/" }
   - { name: "蓝色干燥剂之死", url: "/category/desiccant/" }
+  - { name: "琐", url: "/category/something/" }
   - { name: "照片", url: "/category/photos/" }
   - { name: "关于我", url: "/about" }
 
