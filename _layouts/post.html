@@ -3,23 +3,20 @@ layout: default
 ---
 
 <article class="page-content">
-<header class="post-page-header" style="text-align: left !important; margin-bottom: 30px;">
-  <h1 class="post-title" style="font-size: 28px; font-weight: bold; margin: 0; border: none; text-indent: 0 !important;">
-    {{ page.title }}
-  </h1>
+  <header class="post-page-header" style="text-align: left !important; margin-bottom: 30px;">
+    <h1 class="post-title" style="font-size: 28px; font-weight: bold; margin: 0; border: none; text-indent: 0 !important;">
+      {{ page.title }}
+    </h1>
 
-  <div class="post-meta" style="margin-top: 15px; font-size: 14px; color: #999; text-indent: 0 !important;">
-    {% comment %} 计算字数与阅读时间 {% endcomment %}
-    {% assign word_count = page.content | strip_html | strip_newlines | size %}
-    {% assign read_time = word_count | divided_by: 400 | plus: 1 %}
-    
-    <span>约 {{ word_count }} 字</span>
-    
-    <span style="margin: 0 10px;">·</span>
-    
-    <span>预计阅读 {{ read_time }} 分钟</span>
-  </div>
-</header>
+    <div class="post-meta" style="margin-top: 15px; font-size: 14px; color: #999; text-indent: 0 !important;">
+      {% assign word_count = page.content | strip_html | strip_newlines | size %}
+      {% assign read_time = word_count | divided_by: 300 | plus: 1 %}
+      
+      <span>约 {{ word_count }} 字</span>
+      <span style="margin: 0 10px;">·</span>
+      <span>预计阅读 {{ read_time }} 分钟</span>
+    </div>
+  </header>
 
   <div class="inner-post-content">
     {{ content }}
@@ -29,42 +26,45 @@ layout: default
     编辑于 {{ page.date | date: "%Y/%m/%d" }}
   </div>
 
+  <div style="margin-top: 50px;">
+    <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
+    <script src="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.js"></script>
+    <div id="Comments"></div>
+    <script>
+      Artalk.init({
+        el:        '#Comments',
+        pageKey:   location.pathname,
+        pageTitle: document.title,
+        server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
+        site:      '小狗帽子和永恒泡芙',
+      })
+    </script>
+  </div>
   <footer style="margin-top: 20px; padding-top: 20px; padding-bottom: 80px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; width: 100%; margin-left: 0 !important; margin-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important;">
     <div style="font-size: 13px; color: #bbb; text-indent: 0 !important;">
-  {% if page.categories contains 'photo' %}
-    <a href="{{ site.baseurl }}/category/photos/" style="color: #bbb; text-decoration: none;">返回目录</a>
-  {% elsif page.categories.size > 0 %}
-    <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb; text-decoration: none;">返回目录</a>
-  {% endif %}
-  <span style="margin: 0 10px;">|</span>
-  <a href="{{ site.baseurl }}/" style="color: #bbb; text-decoration: none;">返回主页</a>
-</div>
+      {% if page.categories contains 'photo' %}
+        <a href="{{ site.baseurl }}/category/photos/" style="color: #bbb; text-decoration: none;">返回目录</a>
+      {% elsif page.categories.size > 0 %}
+        <a href="{{ site.baseurl }}/category/{{ page.categories | first }}/" style="color: #bbb; text-decoration: none;">返回目录</a>
+      {% endif %}
+      <span style="margin: 0 10px;">|</span>
+      <a href="{{ site.baseurl }}/" style="color: #bbb; text-decoration: none;">返回主页</a>
+    </div>
 
     <div style="font-size: 13px; color: #bbb; text-align: right;">
-      {% comment %} 
-        1. 初始化重置变量，防止 Jekyll 静态生成时的缓存污染 
-      {% endcomment %}
       {% assign prev_post = nil %}
       {% assign next_post = nil %}
       {% assign current_cat = page.categories | first %}
 
       {% if current_cat %}
         {% assign cat_posts = site.categories[current_cat] %}
-        
         {% for p in cat_posts %}
           {% if p.url == page.url %}
-            {% comment %} 
-              Jekyll 分类列表默认按日期倒序排列：
-              - 索引 + 1 为更旧的文章 (Previous)
-              - 索引 - 1 为更新的文章 (Next)
-            {% endcomment %}
             {% assign p_idx = forloop.index0 | plus: 1 %}
             {% assign n_idx = forloop.index0 | minus: 1 %}
-            
             {% if p_idx < cat_posts.size %}
               {% assign prev_post = cat_posts[p_idx] %}
             {% endif %}
-            
             {% if n_idx >= 0 %}
               {% assign next_post = cat_posts[n_idx] %}
             {% endif %}
@@ -86,3 +86,4 @@ layout: default
       {% endif %}
     </div>
   </footer>
+</article>
