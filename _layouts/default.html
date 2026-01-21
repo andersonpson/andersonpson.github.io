@@ -11,6 +11,7 @@
     {% assign cat_name = cat_slug %}
     {% if cat_slug == "balloon" %}{% assign cat_name = "气球悲歌" %}
     {% elsif cat_slug == "desiccant" %}{% assign cat_name = "蓝色干燥剂之死" %}
+    {% elsif cat_slug == "something" %}{% assign cat_name = "琐" %}
     {% elsif cat_slug == "photos" %}{% assign cat_name = "照片" %}
     {% endif %}
     {{ page.title }} – {{ cat_name }}
