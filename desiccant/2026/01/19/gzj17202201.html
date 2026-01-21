@@ -351,11 +351,24 @@
       <a href="/desiccant/2026/01/19/gzj18202201.html" style="color: #bbb; text-decoration: none;">下一篇</a>
     </div>
 
-    <div id="artalk-wrap" style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
+    <div id="artalk-area" style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
+      
       <style>
+        /* 强制字体隔离 */
         :root { --at-font-family: inherit !important; }
-        #Comments, #Comments *, .atk-layer { font-family: inherit !important; }
-        .atk-item[data-field="mail"], .atk-item[data-field="link"] { display: none !important; }
+        #Comments, #Comments *, .atk-layer, .atk-main-editor, .atk-textarea { 
+          font-family: inherit !important; 
+        }
+        
+        /* 物理移除不需要的字段（即使 JS 失效也会生效） */
+        #Comments .atk-item[data-field="mail"], 
+        #Comments .atk-item[data-field="link"],
+        #Comments .atk-item[data-field="ua"] { 
+          display: none !important; 
+        }
+
+        /* 强制修正暗黑模式输入框文字颜色（解决变黑后看不清的问题） */
+        .atk-dark-mode .atk-textarea { color: #ccc !important; }
       </style>
       
       <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
@@ -364,27 +377,37 @@
       <div id="Comments"></div>
       
       <script>
-        Artalk.init({
-          el:        '#Comments',
-          pageKey:   location.pathname,
-          pageTitle: document.title,
-          server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
-          site:      '小狗帽子和永恒泡芙',
-          locale:    'zh-CN',
-          darkMode:  'auto',
-          fields: {
-            nick: 'required',
-            mail: 'optional',
-            link: 'hide'
-          },
-          i18n: {
-            'zh-CN': {
-              placeholder: '假如你想同我说些什么',
-              nick: '昵称',
-              send: '发布'
+        (function() {
+          var initArtalk = function() {
+            if (typeof Artalk === 'undefined') {
+              setTimeout(initArtalk, 100);
+              return;
             }
-          }
-        });
+            Artalk.init({
+              el:        '#Comments',
+              pageKey:   location.pathname,
+              pageTitle: document.title,
+              server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
+              site:      '小狗帽子和永恒泡芙',
+              useBackendConf: false, // 🔴 关键：禁用后端配置覆盖前端配置
+              locale:    'zh-CN',
+              darkMode:  'auto',
+              fields: {
+                nick: 'required',
+                mail: 'optional',
+                link: 'hide'
+              },
+              i18n: {
+                'zh-CN': {
+                  placeholder: '假如你想同我说些什么',
+                  nick: '昵称',
+                  send: '发布'
+                }
+              }
+            });
+          };
+          initArtalk();
+        })();
       </script>
     </div>
   </footer>
