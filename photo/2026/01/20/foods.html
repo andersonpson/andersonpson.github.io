@@ -162,31 +162,9 @@
     编辑于 2026/01/20
   </div>
 
-  <div style="margin-top: 50px;">
-    <style>
-      :root {
-        --at-font-family: inherit !important; /* 强制 Artalk 使用博客定义的字体 */
-      }
-      #Comments, #Comments * {
-        font-family: inherit !important;
-      }
-    </style>
-
-    <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
-    <script src="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.js"></script>
-    <div id="Comments"></div>
-    <script>
-      Artalk.init({
-        el:        '#Comments',
-        pageKey:   location.pathname,
-        pageTitle: document.title,
-        server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
-        site:      '小狗帽子和永恒泡芙',
-      })
-    </script>
-  </div>
-  <footer style="margin-top: 20px; padding-top: 20px; padding-bottom: 80px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; width: 100%; margin-left: 0 !important; margin-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important;">
-    <div style="font-size: 13px; color: #bbb; text-indent: 0 !important;">
+  <footer style="margin-top: 20px; padding-top: 20px; padding-bottom: 80px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; width: 100%; margin-left: 0 !important; margin-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important;">
+    
+    <div style="font-size: 13px; color: #bbb; text-indent: 0 !important; margin-bottom: 20px;">
       
         <a href="/category/photos/" style="color: #bbb; text-decoration: none;">返回目录</a>
       
@@ -194,7 +172,7 @@
       <a href="/" style="color: #bbb; text-decoration: none;">返回主页</a>
     </div>
 
-    <div style="font-size: 13px; color: #bbb; text-align: right;">
+    <div style="font-size: 13px; color: #bbb; text-align: right; margin-bottom: 20px;">
       
       
       
@@ -217,6 +195,40 @@
       
 
       
+    </div>
+
+    <div style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
+      <style>
+        :root { --at-font-family: inherit !important; }
+        #Comments, #Comments * { font-family: inherit !important; }
+        /* 强制隐藏邮箱输入框（第二个子元素） */
+        .atk-main-editor > .atk-header > .atk-item:nth-child(2) { display: none !important; }
+      </style>
+      <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
+      <script src="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.js"></script>
+      <div id="Comments"></div>
+      <script>
+        Artalk.init({
+          el:        '#Comments',
+          pageKey:   location.pathname,
+          pageTitle: document.title,
+          server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
+          site:      '小狗帽子和永恒泡芙',
+          locale:    'zh-CN', // 强制指定中文语言包
+          fields: {
+            nick: 'required',
+            mail: 'optional',
+            link: 'hide'
+          },
+          i18n: {
+            'zh-CN': {
+              placeholder: '假如你想同我说些什么',
+              nick: '昵称',
+              send: '发布'
+            }
+          }
+        })
+      </script>
     </div>
   </footer>
 </article>
