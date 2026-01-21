@@ -1,14 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<title>
+  
+    琐 – 小狗帽子和永恒泡芙
+  
+</title>
 
----
-layout: default
-title: "琐"
-pagination: 
-  enabled: true
-  category: something
----
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
 
-<div class="about-container">
-  <img src="/assets/images/something-cover.jpg" class="category-header-img">
+    
+    <meta name="description" content="一些我存在的证据，在时光里它们曾部分代表或属于我。
+">
+    <meta property="og:description" content="一些我存在的证据，在时光里它们曾部分代表或属于我。
+" />
+    
+    <meta name="author" content="小狗帽子和永恒泡芙" />
+
+    
+    <meta property="og:title" content="琐" />
+    <meta property="twitter:title" content="琐" />
+    
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="小狗帽子和永恒泡芙 - 一些我存在的证据，在时光里它们曾部分代表或属于我。" href="/feed.xml" />
+  </head>
+
+  <body class="">
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead">
+          
+          <div class="site-info">
+            <h1 class="site-name">
+              <a href="/">小狗帽子和永恒泡芙</a>
+            </h1>
+            <p class="site-description">一些我存在的证据，在时光里它们曾部分代表或属于我。<br />
+</p>
+          </div>
+
+          <nav>
+            
+              <a href="/category/balloon/">气球悲歌</a>
+            
+              <a href="/category/desiccant/">蓝色干燥剂之死</a>
+            
+              <a href="/category/something/">琐</a>
+            
+              <a href="/category/photos/">照片</a>
+            
+              <a href="/about">关于我</a>
+            
+
+            <a href="javascript:void(0);" id="theme-toggle" title="切换模式" class="theme-toggle-link">
+              <img id="theme-icon-img" src="/assets/images/moon.png" alt="切换模式" style="width: 18px; height: 18px; display: block; border: none;">
+            </a>
+          </nav>
+
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <div class="about-container">
+  <img src="/assets/images/something-cover.jpg" class="category-header-img" style="width: 100%; height: auto;">
 
   <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: bold;">琐事小记</h1>
 
@@ -19,75 +77,109 @@ pagination:
   <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 40px;">
 
   <div class="posts-list">
-    {% for post in paginator.posts %}
-      <article style="margin-bottom: 40px;">
-        {% if post.image %}
-          <img src="{{ post.image }}" style="width: 100%; margin-bottom: 15px; border-radius: 2px;">
-        {% endif %}
-        <h2 style="font-size: 22px; margin: 0 0 10px 0;">
-          <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-        </h2>
-        <span style="font-size: 14px; color: #999;">{{ post.date | date: "%Y-%m-%d" }}</span>
-      </article>
-    {% endfor %}
-  </div>
-
- {% if paginator.total_pages > 1 %}
-  <div class="pagination" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #f9f9f9; font-size: 14px; color: #bbb; display: flex; justify-content: space-between; align-items: center;">
     
-    <div style="display: flex; gap: 20px;">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">上一页</a>
-      {% endif %}
-
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" style="color: #666; text-decoration: none;">下一页</a>
-      {% endif %}
-    </div>
-
-    <div style="display: flex; align-items: center;">
-      <input type="number" 
-             id="page-jump-input" 
-             value="{{ paginator.page }}" 
-             min="1" 
-             max="{{ paginator.total_pages }}"
-             style="width: 30px; border: none; border-bottom: 1px solid #eee; background: transparent; text-align: center; font-family: inherit; font-size: 14px; outline: none; color: #666; padding: 0; -moz-appearance: textfield;">
-      <span style="margin-left: 5px; color: #bbb;">/ {{ paginator.total_pages }}</span>
-    </div>
+      <article style="margin-bottom: 40px;">
+        
+        <h2 style="font-size: 22px; margin: 0 0 10px 0;">
+          <a href="/something/2026/01/19/sdearlovewhycantwe.html">亲爱的我们不妨就这样静止在一个峡湾</a>
+        </h2>
+        <span style="font-size: 14px; color: #999;">2026-01-19</span>
+      </article>
+    
+      <article style="margin-bottom: 40px;">
+        
+        <h2 style="font-size: 22px; margin: 0 0 10px 0;">
+          <a href="/something/2026/01/19/sifourlove.html">如果我们的爱的确难以避开克制的话题</a>
+        </h2>
+        <span style="font-size: 14px; color: #999;">2026-01-19</span>
+      </article>
+    
+      <article style="margin-bottom: 40px;">
+        
+        <h2 style="font-size: 22px; margin: 0 0 10px 0;">
+          <a href="/something/2026/01/21/sweatmediterranean.html">地中海指南针</a>
+        </h2>
+        <span style="font-size: 14px; color: #999;">2026-01-21</span>
+      </article>
+    
   </div>
 
-  <script>
-    document.getElementById('page-jump-input').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        const targetPage = parseInt(this.value);
-        const totalPages = parseInt("{{ paginator.total_pages }}");
-        const categoryPath = "{{ site.baseurl }}/category/something/";
-
-        // 逻辑：仅在 1 到 总页数 范围内执行跳转，否则不执行任何动作
-        if (targetPage >= 1 && targetPage <= totalPages) {
-          if (targetPage === 1) {
-            window.location.href = categoryPath;
-          } else {
-            window.location.href = categoryPath + "page" + targetPage + "/";
-          }
-        } else {
-          // 输入非法或超过页数，保持现状并重置显示数字
-          this.value = "{{ paginator.page }}";
-        }
-      }
-    });
-
-    // 隐藏数字输入框默认的增减箭头
-    const styleTag = document.createElement('style');
-    styleTag.innerHTML = `
-      #page-jump-input::-webkit-outer-spin-button,
-      #page-jump-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-    `;
-    document.head.appendChild(styleTag);
-  </script>
-  {% endif %}
+  
 
   <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
-    <a href="{{ site.baseurl }}/" style="font-size: 13px; color: #bbb;">返回主页</a>
+    <a href="/" style="font-size: 13px; color: #bbb; text-decoration: none;">返回主页</a>
   </footer>
 </div>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+
+<a href="https://instagram.com/darkclouds_watch"><i class="svg-icon instagram"></i></a>
+
+
+
+
+
+
+
+          
+          <div class="copyright">
+            &copy; 2026 小狗帽子和永恒泡芙. All rights reserved.
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    
+
+    
+    <script>
+      const toggleBtn = document.getElementById('theme-toggle');
+      const themeIconImg = document.getElementById('theme-icon-img');
+      const htmlElement = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      htmlElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        htmlElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('theme', targetTheme);
+        updateThemeIcon(targetTheme);
+      });
+
+      function updateThemeIcon(theme) {
+        if (themeIconImg) {
+          const basePath = "/assets/images/";
+          if (theme === 'dark') {
+            themeIconImg.src = basePath + "sun.png";
+          } else {
+            themeIconImg.src = basePath + "moon.png";
+          }
+        }
+        
+        const bannerImg = document.querySelector('.home-banner img, .full-width-banner img');
+        if (bannerImg) {
+          const src = bannerImg.src;
+          if (theme === 'dark') {
+            if (!src.includes('_dark')) {
+              bannerImg.src = src.replace(/(\.jpg|\.png|\.jpeg)/, '_dark$1');
+            }
+          } else {
+            bannerImg.src = src.replace('_dark', '');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
