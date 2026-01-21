@@ -2,7 +2,7 @@
 layout: post
 title: "如果我们的爱的确难以避开克制的话题"
 date: 2026-01-19
-categories: [balloon]
+categories: [something]
 ---	
 冬季漫长的雨季来了，雨水已经连绵了一周。
 
