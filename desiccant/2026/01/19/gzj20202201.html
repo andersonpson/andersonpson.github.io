@@ -348,117 +348,132 @@
   <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
   <script src="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.js"></script>
 
-  <style>
-    /* 1) 字体继承 */
-    :root { --at-font-family: inherit !important; }
-    #Comments, #Comments * { font-family: inherit !important; }
-
-    /* 2) 评论区整体字号（输入 + 显示） */
-    #Comments { font-size: 14px !important; line-height: 1.55 !important; }
-    #Comments .atk-content,
-    #Comments .atk-comment,
-    #Comments .atk-editor,
-    #Comments .atk-main-editor,
-    #Comments .atk-textarea,
-    #Comments textarea,
-    #Comments input,
-    #Comments button {
-      font-size: 12px !important;
-      line-height: 1.55 !important;
-    }
-
-    /* 3) 仅隐藏网址与表情（邮箱保留） */
-    #Comments input[type="url"],
-    .atk-item[data-field="link"],
-    .atk-grp[data-grp="emoticons"] {
-      display: none !important;
-    }
-
-    /* 4) 浅色模式：全局文字颜色（避免“字消失”） */
-    #Comments,
-    #Comments .atk-content,
-    #Comments .atk-comment,
-    #Comments .atk-item,
-    #Comments .atk-meta,
-    #Comments .atk-nick,
-    #Comments .atk-time,
-    #Comments .atk-btn,
-    #Comments a {
-      color: #2c2c2c !important;
-    }
-    /* 浅色模式：弱化信息色 */
-    #Comments .atk-meta,
-    #Comments .atk-time,
-    #Comments .atk-count,
-    #Comments .atk-footer,
-    #Comments .atk-hint {
-      color: rgba(44,44,44,0.55) !important;
-    }
-
-    /* 5) 深色模式：全局文字颜色 */
-    .atk-dark-mode #Comments,
-    .atk-dark-mode #Comments .atk-content,
-    .atk-dark-mode #Comments .atk-comment,
-    .atk-dark-mode #Comments .atk-item,
-    .atk-dark-mode #Comments .atk-meta,
-    .atk-dark-mode #Comments .atk-nick,
-    .atk-dark-mode #Comments .atk-time,
-    .atk-dark-mode #Comments .atk-btn,
-    .atk-dark-mode #Comments a {
-      color: #d6d6d6 !important;
-    }
-    .atk-dark-mode #Comments .atk-meta,
-    .atk-dark-mode #Comments .atk-time,
-    .atk-dark-mode #Comments .atk-count,
-    .atk-dark-mode #Comments .atk-footer,
-    .atk-dark-mode #Comments .atk-hint {
-      color: rgba(214,214,214,0.60) !important;
-    }
-
-    /* 6) 输入框背景色：同时命中 textarea 与其包裹层 */
-    #Comments .atk-main-editor,
-    #Comments .atk-textarea-wrap {
-      background-color: rgba(245,245,240,0.92) !important;
-      border: 1px solid rgba(0,0,0,0.10) !important;
-      border-radius: 10px !important;
-    }
-
-    #Comments textarea.atk-textarea,
-    #Comments .atk-textarea {
-      background-color: rgba(245,245,240,0.92) !important;
-      color: #2c2c2c !important;
-      border: none !important;
-      box-shadow: none !important;
-      outline: none !important;
-    }
-
-    /* 7) 深色模式输入框背景色 */
-    .atk-dark-mode #Comments .atk-main-editor,
-    .atk-dark-mode #Comments .atk-textarea-wrap {
-      background-color: rgba(20,20,20,0.92) !important;
-      border: 1px solid rgba(255,255,255,0.14) !important;
-    }
-
-    .atk-dark-mode #Comments textarea.atk-textarea,
-    .atk-dark-mode #Comments .atk-textarea {
-      background-color: rgba(20,20,20,0.92) !important;
-      color: #d6d6d6 !important;
-    }
-
-    /* 8) placeholder 颜色（浅色/深色） */
-    #Comments textarea::placeholder { color: rgba(44,44,44,0.45) !important; }
-    .atk-dark-mode #Comments textarea::placeholder { color: rgba(214,214,214,0.45) !important; }
-  </style>
-
   <div id="Comments"></div>
 
   <script>
     (function() {
+      function injectArtalkStyle() {
+        var id = 'atk-style-override-v3';
+        var old = document.getElementById(id);
+        if (old) old.remove();
+
+        var style = document.createElement('style');
+        style.id = id;
+        style.type = 'text/css';
+        style.appendChild(document.createTextNode(`
+          /* ===== 全域只命中 Artalk 的 class，避免 #Comments 选择器失效 ===== */
+
+          /* 字体继承 */
+          :root { --at-font-family: inherit !important; }
+          .atk-root, .atk-root * , .atk-layer, .atk-layer * {
+            font-family: inherit !important;
+          }
+
+          /* 仅隐藏网址与表情（邮箱保留） */
+          .atk-item input[type="url"],
+          .atk-item[data-field="link"],
+          .atk-grp[data-grp="emoticons"] {
+            display: none !important;
+          }
+
+          /* 字号：输入区+显示区整体缩小 */
+          .atk-root,
+          .atk-root .atk-content,
+          .atk-root .atk-comment,
+          .atk-root .atk-editor,
+          .atk-root .atk-main-editor,
+          .atk-root textarea,
+          .atk-root input,
+          .atk-root button,
+          .atk-layer,
+          .atk-layer textarea,
+          .atk-layer input,
+          .atk-layer button {
+            font-size: 13px !important;
+            line-height: 1.55 !important;
+          }
+
+          /* 浅色模式：全局文字颜色（避免浅色模式“字消失”） */
+          .atk-root,
+          .atk-root .atk-content,
+          .atk-root .atk-comment,
+          .atk-root .atk-item,
+          .atk-root .atk-nick,
+          .atk-root .atk-time,
+          .atk-root .atk-meta,
+          .atk-root .atk-btn,
+          .atk-root a {
+            color: #2c2c2c !important;
+          }
+          .atk-root .atk-meta,
+          .atk-root .atk-time,
+          .atk-root .atk-count,
+          .atk-root .atk-footer,
+          .atk-root .atk-hint {
+            color: rgba(44,44,44,0.55) !important;
+          }
+
+          /* 深色模式：全局文字颜色 */
+          .atk-dark-mode .atk-root,
+          .atk-dark-mode .atk-root .atk-content,
+          .atk-dark-mode .atk-root .atk-comment,
+          .atk-dark-mode .atk-root .atk-item,
+          .atk-dark-mode .atk-root .atk-nick,
+          .atk-dark-mode .atk-root .atk-time,
+          .atk-dark-mode .atk-root .atk-meta,
+          .atk-dark-mode .atk-root .atk-btn,
+          .atk-dark-mode .atk-root a {
+            color: #d6d6d6 !important;
+          }
+          .atk-dark-mode .atk-root .atk-meta,
+          .atk-dark-mode .atk-root .atk-time,
+          .atk-dark-mode .atk-root .atk-count,
+          .atk-dark-mode .atk-root .atk-footer,
+          .atk-dark-mode .atk-root .atk-hint {
+            color: rgba(214,214,214,0.60) !important;
+          }
+
+          /* 输入框背景：命中包裹层 + textarea 本体 */
+          .atk-root .atk-main-editor,
+          .atk-root .atk-textarea-wrap {
+            background-color: rgba(245,245,240,0.92) !important;
+            border: 1px solid rgba(0,0,0,0.10) !important;
+            border-radius: 10px !important;
+          }
+          .atk-root textarea.atk-textarea,
+          .atk-root .atk-textarea {
+            background-color: rgba(245,245,240,0.92) !important;
+            color: #2c2c2c !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+          }
+
+          /* 深色模式输入框背景 */
+          .atk-dark-mode .atk-root .atk-main-editor,
+          .atk-dark-mode .atk-root .atk-textarea-wrap {
+            background-color: rgba(20,20,20,0.92) !important;
+            border: 1px solid rgba(255,255,255,0.14) !important;
+          }
+          .atk-dark-mode .atk-root textarea.atk-textarea,
+          .atk-dark-mode .atk-root .atk-textarea {
+            background-color: rgba(20,20,20,0.92) !important;
+            color: #d6d6d6 !important;
+          }
+
+          /* placeholder 颜色 */
+          .atk-root textarea::placeholder { color: rgba(44,44,44,0.45) !important; }
+          .atk-dark-mode .atk-root textarea::placeholder { color: rgba(214,214,214,0.45) !important; }
+        `));
+        document.head.appendChild(style);
+      }
+
       function initArtalk() {
         if (typeof Artalk === 'undefined') {
           setTimeout(initArtalk, 100);
           return;
         }
+
         Artalk.init({
           el:        '#Comments',
           pageKey:   location.pathname,
@@ -474,7 +489,13 @@
           imgUpload: false,
           preview:   false
         });
+
+        /* 关键：初始化后注入；再延迟补一次，防止 Artalk 后渲染覆盖 */
+        injectArtalkStyle();
+        setTimeout(injectArtalkStyle, 300);
+        setTimeout(injectArtalkStyle, 1200);
       }
+
       initArtalk();
     })();
   </script>
