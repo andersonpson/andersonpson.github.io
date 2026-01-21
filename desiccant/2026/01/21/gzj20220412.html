@@ -195,7 +195,7 @@
         :root { --at-font-family: inherit !important; }
         #Comments, #Comments * { font-family: inherit !important; }
 
-        /* 2. 物理隐藏邮箱、网址、表情选择器 */
+        /* 2. 物理隐藏邮箱、网址、表情选择器（保持不变） */
         #Comments input[type="email"],
         #Comments input[type="url"],
         .atk-item[data-field="mail"],
@@ -204,23 +204,31 @@
           display: none !important;
         }
 
-        /* 3. 输入框底色与文字色控制 */
+        /* ===== 仅修改以下：评论输入区颜色 ===== */
+
+        /* 3. 亮色模式：输入区整体 */
+        #Comments .atk-main-editor,
+        #Comments .atk-textarea-wrap,
         #Comments .atk-textarea {
-          background: rgba(255,255,255,0.45) !important;
+          background: rgba(245,245,240,0.9) !important;
+        }
+
+        #Comments .atk-textarea {
           color: #2c2c2c !important;
-          border: 1px solid rgba(0,0,0,0.08) !important;
+          border: 1px solid rgba(0,0,0,0.12) !important;
           box-shadow: none !important;
         }
 
-        /* 4. 暗黑模式兼容 */
+        /* 4. 暗黑模式：输入区整体 */
+        .atk-dark-mode #Comments .atk-main-editor,
+        .atk-dark-mode #Comments .atk-textarea-wrap,
         .atk-dark-mode #Comments .atk-textarea {
-          background: rgba(25,25,25,0.8) !important;
-          color: #ccc !important;
-          border: 1px solid rgba(255,255,255,0.10) !important;
+          background: rgba(20,20,20,0.9) !important;
         }
-        .atk-dark-mode .atk-main-editor {
-          background: #1a1a1a !important;
-          border-color: #333 !important;
+
+        .atk-dark-mode #Comments .atk-textarea {
+          color: #ccc !important;
+          border: 1px solid rgba(255,255,255,0.15) !important;
         }
       </style>
       
