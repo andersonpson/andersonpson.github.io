@@ -249,80 +249,142 @@
       <a href="/desiccant/2026/01/20/gzj20220315.html" style="color: #bbb; text-decoration: none;">下一篇</a>
     </div>
 
-    <div id="artalk-area" style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
-      <style>
-        /* 1. 字体继承 */
-        :root { --at-font-family: inherit !important; }
-        #Comments, #Comments * { font-family: inherit !important; }
+<div id="artalk-area" style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
 
-        /* 2. 仅隐藏网址与表情（邮箱保留） */
-        #Comments input[type="url"],
-        .atk-item[data-field="link"],
-        .atk-grp[data-grp="emoticons"] {
-          display: none !important;
+  <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
+  <script src="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.js"></script>
+
+  <style>
+    /* 1) 字体继承 */
+    :root { --at-font-family: inherit !important; }
+    #Comments, #Comments * { font-family: inherit !important; }
+
+    /* 2) 评论区整体字号（输入 + 显示） */
+    #Comments { font-size: 14px !important; line-height: 1.55 !important; }
+    #Comments .atk-content,
+    #Comments .atk-comment,
+    #Comments .atk-editor,
+    #Comments .atk-main-editor,
+    #Comments .atk-textarea,
+    #Comments textarea,
+    #Comments input,
+    #Comments button {
+      font-size: 12px !important;
+      line-height: 1.55 !important;
+    }
+
+    /* 3) 仅隐藏网址与表情（邮箱保留） */
+    #Comments input[type="url"],
+    .atk-item[data-field="link"],
+    .atk-grp[data-grp="emoticons"] {
+      display: none !important;
+    }
+
+    /* 4) 浅色模式：全局文字颜色（避免“字消失”） */
+    #Comments,
+    #Comments .atk-content,
+    #Comments .atk-comment,
+    #Comments .atk-item,
+    #Comments .atk-meta,
+    #Comments .atk-nick,
+    #Comments .atk-time,
+    #Comments .atk-btn,
+    #Comments a {
+      color: #2c2c2c !important;
+    }
+    /* 浅色模式：弱化信息色 */
+    #Comments .atk-meta,
+    #Comments .atk-time,
+    #Comments .atk-count,
+    #Comments .atk-footer,
+    #Comments .atk-hint {
+      color: rgba(44,44,44,0.55) !important;
+    }
+
+    /* 5) 深色模式：全局文字颜色 */
+    .atk-dark-mode #Comments,
+    .atk-dark-mode #Comments .atk-content,
+    .atk-dark-mode #Comments .atk-comment,
+    .atk-dark-mode #Comments .atk-item,
+    .atk-dark-mode #Comments .atk-meta,
+    .atk-dark-mode #Comments .atk-nick,
+    .atk-dark-mode #Comments .atk-time,
+    .atk-dark-mode #Comments .atk-btn,
+    .atk-dark-mode #Comments a {
+      color: #d6d6d6 !important;
+    }
+    .atk-dark-mode #Comments .atk-meta,
+    .atk-dark-mode #Comments .atk-time,
+    .atk-dark-mode #Comments .atk-count,
+    .atk-dark-mode #Comments .atk-footer,
+    .atk-dark-mode #Comments .atk-hint {
+      color: rgba(214,214,214,0.60) !important;
+    }
+
+    /* 6) 输入框背景色：同时命中 textarea 与其包裹层 */
+    #Comments .atk-main-editor,
+    #Comments .atk-textarea-wrap {
+      background-color: rgba(245,245,240,0.92) !important;
+      border: 1px solid rgba(0,0,0,0.10) !important;
+      border-radius: 10px !important;
+    }
+
+    #Comments textarea.atk-textarea,
+    #Comments .atk-textarea {
+      background-color: rgba(245,245,240,0.92) !important;
+      color: #2c2c2c !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    /* 7) 深色模式输入框背景色 */
+    .atk-dark-mode #Comments .atk-main-editor,
+    .atk-dark-mode #Comments .atk-textarea-wrap {
+      background-color: rgba(20,20,20,0.92) !important;
+      border: 1px solid rgba(255,255,255,0.14) !important;
+    }
+
+    .atk-dark-mode #Comments textarea.atk-textarea,
+    .atk-dark-mode #Comments .atk-textarea {
+      background-color: rgba(20,20,20,0.92) !important;
+      color: #d6d6d6 !important;
+    }
+
+    /* 8) placeholder 颜色（浅色/深色） */
+    #Comments textarea::placeholder { color: rgba(44,44,44,0.45) !important; }
+    .atk-dark-mode #Comments textarea::placeholder { color: rgba(214,214,214,0.45) !important; }
+  </style>
+
+  <div id="Comments"></div>
+
+  <script>
+    (function() {
+      function initArtalk() {
+        if (typeof Artalk === 'undefined') {
+          setTimeout(initArtalk, 100);
+          return;
         }
-
-        /* ===== 评论输入区颜色控制 ===== */
-
-        /* 3. 亮色模式 */
-        #Comments .atk-main-editor,
-        #Comments .atk-textarea-wrap,
-        #Comments .atk-textarea {
-          background: rgba(245,245,240,0.9) !important;
-        }
-
-        #Comments .atk-textarea {
-          color: #2c2c2c !important;
-          border: 1px solid rgba(0,0,0,0.12) !important;
-          box-shadow: none !important;
-        }
-
-        /* 4. 暗黑模式 */
-        .atk-dark-mode #Comments .atk-main-editor,
-        .atk-dark-mode #Comments .atk-textarea-wrap,
-        .atk-dark-mode #Comments .atk-textarea {
-          background: rgba(20,20,20,0.9) !important;
-        }
-
-        .atk-dark-mode #Comments .atk-textarea {
-          color: #ccc !important;
-          border: 1px solid rgba(255,255,255,0.15) !important;
-        }
-      </style>
-      
-      <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
-      <script src="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.js"></script>
-      
-      <div id="Comments"></div>
-      
-      <script>
-        (function() {
-          function initArtalk() {
-            if (typeof Artalk === 'undefined') {
-              setTimeout(initArtalk, 100);
-              return;
-            }
-
-            Artalk.init({
-              el:        '#Comments',
-              pageKey:   location.pathname,
-              pageTitle: document.title,
-              server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
-              site:      '小狗帽子和永恒泡芙',
-              useBackendConf: false,
-              locale:    'zh-CN',
-              darkMode:  'auto',
-              placeholder: '假如你想同我说些什么',
-              sendBtn:      '发布',
-              emoticons: false,
-              imgUpload: false,
-              preview:   false
-            });
-          }
-          initArtalk();
-        })();
-      </script>
-    </div>
+        Artalk.init({
+          el:        '#Comments',
+          pageKey:   location.pathname,
+          pageTitle: document.title,
+          server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
+          site:      '小狗帽子和永恒泡芙',
+          useBackendConf: false,
+          locale:    'zh-CN',
+          darkMode:  'auto',
+          placeholder: '假如你想同我说些什么',
+          sendBtn:      '发布',
+          emoticons: false,
+          imgUpload: false,
+          preview:   false
+        });
+      }
+      initArtalk();
+    })();
+  </script>
+</div>
   </footer>
 </article>
 
