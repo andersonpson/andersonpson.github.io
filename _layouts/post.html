@@ -11,7 +11,6 @@ layout: default
     <div class="post-meta" style="margin-top: 15px; font-size: 14px; color: #999; text-indent: 0 !important;">
       {% assign word_count = page.content | strip_html | strip_newlines | size %}
       {% assign read_time = word_count | divided_by: 300 | plus: 1 %}
-      
       <span>约 {{ word_count }} 字</span>
       <span style="margin: 0 10px;">·</span>
       <span>预计阅读 {{ read_time }} 分钟</span>
@@ -42,46 +41,35 @@ layout: default
       {% assign prev_post = nil %}
       {% assign next_post = nil %}
       {% assign current_cat = page.categories | first %}
-
       {% if current_cat %}
         {% assign cat_posts = site.categories[current_cat] %}
         {% for p in cat_posts %}
           {% if p.url == page.url %}
             {% assign p_idx = forloop.index0 | plus: 1 %}
             {% assign n_idx = forloop.index0 | minus: 1 %}
-            {% if p_idx < cat_posts.size %}
-              {% assign prev_post = cat_posts[p_idx] %}
-            {% endif %}
-            {% if n_idx >= 0 %}
-              {% assign next_post = cat_posts[n_idx] %}
-            {% endif %}
+            {% if p_idx < cat_posts.size %}{% assign prev_post = cat_posts[p_idx] %}{% endif %}
+            {% if n_idx >= 0 %}{% assign next_post = cat_posts[n_idx] %}{% endif %}
             {% break %}
           {% endif %}
         {% endfor %}
       {% endif %}
-
-      {% if prev_post %}
-        <a href="{{ prev_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">上一篇</a>
-      {% endif %}
-
-      {% if prev_post and next_post %}
-        <span style="margin: 0 10px;">|</span>
-      {% endif %}
-
-      {% if next_post %}
-        <a href="{{ next_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">下一篇</a>
-      {% endif %}
+      {% if prev_post %}<a href="{{ prev_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">上一篇</a>{% endif %}
+      {% if prev_post and next_post %}<span style="margin: 0 10px;">|</span>{% endif %}
+      {% if next_post %}<a href="{{ next_post.url | relative_url }}" style="color: #bbb; text-decoration: none;">下一篇</a>{% endif %}
     </div>
 
-    <div style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
+    <div id="artalk-wrap" style="width: 100%; margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px;">
       <style>
         :root { --at-font-family: inherit !important; }
-        #Comments, #Comments * { font-family: inherit !important; }
-        .atk-main-editor > .atk-header > .atk-item:nth-child(2) { display: none !important; }
+        #Comments, #Comments *, .atk-layer { font-family: inherit !important; }
+        .atk-item[data-field="mail"], .atk-item[data-field="link"] { display: none !important; }
       </style>
+      
       <link href="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.css" rel="stylesheet" />
       <script src="https://respectable-waly-puppyhat-93540749.koyeb.app/dist/Artalk.js"></script>
+      
       <div id="Comments"></div>
+      
       <script>
         Artalk.init({
           el:        '#Comments',
@@ -90,7 +78,7 @@ layout: default
           server:    'https://respectable-waly-puppyhat-93540749.koyeb.app',
           site:      '小狗帽子和永恒泡芙',
           locale:    'zh-CN',
-          darkMode:  'auto', // 🔴 设置为 auto 自动跟随系统黑夜模式
+          darkMode:  'auto',
           fields: {
             nick: 'required',
             mail: 'optional',
@@ -103,7 +91,7 @@ layout: default
               send: '发布'
             }
           }
-        })
+        });
       </script>
     </div>
   </footer>
