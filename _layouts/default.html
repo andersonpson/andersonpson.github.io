@@ -57,17 +57,31 @@
       <div style="height: 80px; clear: both;"></div>
     </div>
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-          
-          <div class="copyright">
-            &copy; {{ site.time | date: "%Y" }} {{ site.name }}. All rights reserved.
-          </div>
-        </footer>
-      </div>
-    </div>
+   <div class="wrapper-footer" style="padding-bottom: 30px;">
+  <div class="container">
+    <footer class="footer">
+      {% include svg-icons.html %}
+      
+<div class="copyright">
+  {% assign month = site.time | date: "%m" | plus: 0 %}
+  
+  {% comment %} 12个月令细分逻辑 {% endcomment %}
+  {% if month == 3 %}{% assign season_tag = "春初" %}
+  {% elsif month == 4 %}{% assign season_tag = "春盛" %}
+  {% elsif month == 5 %}{% assign season_tag = "春暮" %}
+  {% elsif month == 6 %}{% assign season_tag = "夏初" %}
+  {% elsif month == 7 %}{% assign season_tag = "夏盛" %}
+  {% elsif month == 8 %}{% assign season_tag = "夏暮" %}
+  {% elsif month == 9 %}{% assign season_tag = "秋初" %}
+  {% elsif month == 10 %}{% assign season_tag = "秋澄" %}
+  {% elsif month == 11 %}{% assign season_tag = "秋深" %}
+  {% elsif month == 12 %}{% assign season_tag = "冬初" %}
+  {% elsif month == 1 %}{% assign season_tag = "冬深" %}
+  {% else %}{% assign season_tag = "冬尽" %}
+  {% endif %}
+
+  © {{ site.name }} · {{ season_tag }} · 已有 {{ site.posts.size }} 条记录
+</div>
 
     {% include analytics.html %}
     
