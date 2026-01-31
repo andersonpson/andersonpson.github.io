@@ -44,10 +44,11 @@
 body {
   background-color: var(--bg-color);
   
-  /* 基础平铺设置 */
-  background-repeat: repeat;
-  background-size: 600px 600px;
-  background-attachment: fixed; /* 实现位移感的核心 */
+/* 背景平铺设置 */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
 
   font-family: 'Jinghua', serif;
   color: var(--text-color);
