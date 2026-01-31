@@ -62,7 +62,10 @@ body {
 [data-theme="dark"] body {
   background-image: url("{{ site.baseurl }}/assets/images/stars.png") !important;
 }
-
+/* 新增：浅色模式单独指定背景图（与深色模式同级覆盖方式） */
+[data-theme="light"] body {
+  background-image: url("{{ site.baseurl }}/assets/images/light.png") !important;
+}
 /* --------------------------------------
    4. 核心布局容器 (Layout Container)
    -------------------------------------- */
