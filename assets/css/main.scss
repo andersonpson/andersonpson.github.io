@@ -48,7 +48,7 @@ body {
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
 
   font-family: 'Jinghua', serif;
   color: var(--text-color);
@@ -91,6 +91,9 @@ header, .home-wrapper, footer {
   inset 0 0 0 1px var(--glass-border);  /* 您设置的精致边缘 */
   text-align: left;
   box-sizing: border-box;
+  position: relative; /* 确立层叠上下文 */
+  z-index: 1;         /* 强制提升至 body 背景之上 */
+
 }
 
 /* 摄影集文章专用局部覆盖：扩大展示宽度 */
