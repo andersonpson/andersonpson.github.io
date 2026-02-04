@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "念旧者的忏悔【未完成】"
-date: 2026-02-02
+date: 2026-01-02
 categories: [photo]
 image: "/assets/images/Old/Old1.png" 
 ---
@@ -56,5 +56,96 @@ image: "/assets/images/Old/Old1.png"
   <img src="/assets/images/Old/Old7.png" style="width: 100%; display: block;">
   <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
     在超市里找了两年才买到的番茄膏，本以为能及时用完你，对不起。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old8.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    爱沙尼亚小孩哥在某个暑假之后给我带来的。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old9.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    妹妹送给我的小夜灯，非常厉害地亮了超过100个小时。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old10.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    黑羊的徽章，总是从我的背包脱落下来。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old11.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    ……
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old12.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    我将最后点燃你一次。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old13.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    并不美味的椰浆，很难找到更多的作用。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old14.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    我的香料的一部分。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old15.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    在地中海捡到的贝壳。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old16.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    用了很久很久都没有用完的绳子。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old17.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    我巨大的马克杯，再见。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old18.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    海滩上捡到的透明鹅卵石，在此之前或许只是一块玻璃。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old19.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    以为自己或许会学画画而买的小体老师，但几年了从来都没用过。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old20.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    去年临时在机场购买的，但并不算舒服。
   </figcaption>
 </figure>
