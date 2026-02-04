@@ -37,3 +37,24 @@ image: "/assets/images/Old/Old1.png"
     你们代表所有人，所有那些从我背包上脱落，然后失散的所有徽章，对不起。
   </figcaption>
 </figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old5.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    你是未能送出的礼物，对不起。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old6.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    买来用来练习魔术的纸牌，你在我不知道的时候被打湿。
+  </figcaption>
+</figure>
+
+<figure style="margin-bottom: 35px;">
+  <img src="/assets/images/Old/Old7.png" style="width: 100%; display: block;">
+  <figcaption style="margin-top: 10px; font-size: 13px; color: #888; text-align: center; font-style: normal;">
+    在超市里找了两年才买到的番茄膏，本以为能及时用完你，对不起。
+  </figcaption>
+</figure>
