@@ -16,7 +16,7 @@
   --header-title: #262524;             /* 网站标题颜色 */
 }
 
-/* 替换 _sass/_main.scss 第 1 部分的深色模式变量 */
+/* 深色模式变量 */
 [data-theme="dark"] {
   --bg-color: #1a1c22;              
   --text-color: #d6d2c4;            /* 正文：较暗的米灰色，护眼 */
